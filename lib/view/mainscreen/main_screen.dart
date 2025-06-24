@@ -126,7 +126,7 @@ class MainScreen extends GetView<MainScreenController> {
                             ),
                           ),
                           const SizedBox(height: 30),
-                          Text(
+                          SelectableText(
                             'I craft seamless experiences across devices, blending design and logic to bring ideas to life—one pixel and line of code at a time.'
                                 .tr,
                             style: TextStyle(
