@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -61,6 +63,12 @@ class MainScreen extends GetView<MainScreenController> {
                 ),
               );
             }),
+            Positioned.fill(
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+                child: Container(),
+              ),
+            ),
             Scaffold(
               // backgroundColor: Theme.of(context).colorScheme.surface,
               backgroundColor: Colors.transparent,

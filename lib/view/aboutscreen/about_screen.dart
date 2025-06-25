@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/data/fun_fact.dart';
@@ -53,6 +55,12 @@ class AboutScreen extends GetView<MainScreenController> {
               ),
             );
           }),
+          Positioned.fill(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+              child: Container(),
+            ),
+          ),
           Scaffold(
             // backgroundColor: Theme.of(context).colorScheme.surface,
             backgroundColor: Colors.transparent,
