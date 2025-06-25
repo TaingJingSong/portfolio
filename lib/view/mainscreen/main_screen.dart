@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -23,32 +24,73 @@ class MainScreen extends GetView<MainScreenController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        body: CustomScrollView(
-          slivers: [
-            AppBarWidget(),
-            if (Responsive.isMobile(context))
-              SliverToBoxAdapter(child: BackDropMenuWidget()),
-            SliverList.list(
-              children: [
-                _buildTopProfile(context),
-                const SizedBox(height: 60),
-                _buildProjectSection(context),
-                const SizedBox(height: 60),
-                _buildSkillSection(context),
-                const SizedBox(height: 60),
-                _buildAboutMeSection(context),
-                const SizedBox(height: 60),
-                _buildContactSection(context),
-                const SizedBox(height: 20),
-                Divider(
-                  color: Theme.of(context).colorScheme.tertiary,
-                  height: 50,
+      child: MouseRegion(
+        onHover: (event) {
+          controller.top.value = event.position.dy;
+          controller.left.value = event.position.dx;
+        },
+        onEnter: (event) {
+          controller.isEnter.value = true;
+        },
+        onExit: (event) {
+          controller.isEnter.value = false;
+        },
+        child: Stack(
+          children: [
+            Obx(() {
+              return Visibility(
+                visible: controller.isEnter.value,
+                child: AnimatedPositioned(
+                  duration: const Duration(milliseconds: 100),
+                  top: controller.top.value - 25,
+                  left: controller.left.value - 25,
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 20,
+                          color: Colors.blueAccent.withAlpha(150),
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ],
+              );
+            }),
+            Scaffold(
+              // backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: Colors.transparent,
+              body: CustomScrollView(
+                slivers: [
+                  AppBarWidget(),
+                  if (Responsive.isMobile(context))
+                    SliverToBoxAdapter(child: BackDropMenuWidget()),
+                  SliverList.list(
+                    children: [
+                      _buildTopProfile(context),
+                      const SizedBox(height: 60),
+                      _buildProjectSection(context),
+                      const SizedBox(height: 60),
+                      _buildSkillSection(context),
+                      const SizedBox(height: 60),
+                      _buildAboutMeSection(context),
+                      const SizedBox(height: 60),
+                      _buildContactSection(context),
+                      const SizedBox(height: 20),
+                      Divider(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        height: 50,
+                      ),
+                    ],
+                  ),
+                  SliverFillRemaining(hasScrollBody: false, child: BottomApp()),
+                ],
+              ),
             ),
-            SliverFillRemaining(hasScrollBody: false, child: BottomApp()),
           ],
         ),
       ),
@@ -135,7 +177,7 @@ class MainScreen extends GetView<MainScreenController> {
                               fontFamily:
                                   Get.locale == Locale('km')
                                       ? 'KhmerFont'
-                                      : 'KhmerFontDesc',
+                                      : 'EnglishFont',
                             ),
                           ),
                         ],
@@ -332,16 +374,6 @@ class MainScreen extends GetView<MainScreenController> {
   Widget _buildProjectSection(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
-          top: 100,
-          right: -30,
-          child: BoxLineWidget(width: 100, height: 100),
-        ),
-        Positioned(
-          top: 50,
-          left: -50,
-          child: DotBoxWidget(width: 90, height: 90),
-        ),
         Align(
           alignment: Alignment.center,
           child: FractionallySizedBox(
@@ -428,6 +460,16 @@ class MainScreen extends GetView<MainScreenController> {
               ],
             ),
           ),
+        ),
+        Positioned(
+          top: 100,
+          right: -30,
+          child: BoxLineWidget(width: 100, height: 100),
+        ),
+        Positioned(
+          top: 50,
+          left: -50,
+          child: DotBoxWidget(width: 90, height: 90),
         ),
       ],
     );
@@ -643,20 +685,34 @@ class MainScreen extends GetView<MainScreenController> {
                                       : 'EnglishFont',
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          Text(
-                            'My focus is on writing maintainable, scalable code and delivering responsive apps that provide smooth user experiences across both Android and iOS platforms. Whether it’s building from scratch or improving existing apps, I thrive in transforming complex problems into intuitive interfaces.'
-                                .tr,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontFamily:
-                                  Get.locale == Locale('km')
-                                      ? 'KhmerFontDesc'
-                                      : 'EnglishFont',
+                          if (!Responsive.isWindow(context))
+                            Text(
+                              '...',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontFamily:
+                                    Get.locale == Locale('km')
+                                        ? 'KhmerFontDesc'
+                                        : 'EnglishFont',
+                              ),
                             ),
-                          ),
                           const SizedBox(height: 20),
+                          if (Responsive.isWindow(context)) ...[
+                            Text(
+                              'My focus is on writing maintainable, scalable code and delivering responsive apps that provide smooth user experiences across both Android and iOS platforms. Whether it’s building from scratch or improving existing apps, I thrive in transforming complex problems into intuitive interfaces.'
+                                  .tr,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontFamily:
+                                    Get.locale == Locale('km')
+                                        ? 'KhmerFontDesc'
+                                        : 'EnglishFont',
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                          ],
                           ButtonWidget(
                             onPressed: () {
                               controller.selectedMenu.value = 2;
@@ -798,12 +854,31 @@ class MainScreen extends GetView<MainScreenController> {
                                   'assets/icon/svg/Email.svg',
                                   width: 25,
                                 ),
-                                title: Text(
-                                  'chingsong15@gmail.com',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
+                                title: InkWell(
+                                  onTap: () async {
+                                    await Clipboard.setData(
+                                      ClipboardData(
+                                        text: 'chingsong15@gmail.com',
+                                      ),
+                                    );
+
+                                    showSnackBar(context);
+                                  },
+                                  borderRadius: BorderRadius.circular(5),
+                                  hoverColor: Colors.grey.withAlpha(50),
+                                  splashColor: Colors.grey.withAlpha(50),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Text(
+                                      'chingsong15@gmail.com',
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color:
+                                            Theme.of(
+                                              context,
+                                            ).colorScheme.secondary,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 contentPadding: EdgeInsets.zero,
@@ -814,12 +889,26 @@ class MainScreen extends GetView<MainScreenController> {
                                   'assets/icon/svg/Telegram.svg',
                                   width: 25,
                                 ),
-                                title: Text(
-                                  '015 528 384',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
+                                title: InkWell(
+                                  onTap: () async {
+                                    await Clipboard.setData(
+                                      ClipboardData(text: '015 528 384'),
+                                    );
+
+                                    showSnackBar(context);
+                                  },
+                                  borderRadius: BorderRadius.circular(5),
+                                  hoverColor: Colors.grey.withAlpha(50),
+                                  splashColor: Colors.grey.withAlpha(50),
+                                  child: Text(
+                                    '015 528 384',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color:
+                                          Theme.of(
+                                            context,
+                                          ).colorScheme.secondary,
+                                    ),
                                   ),
                                 ),
                                 contentPadding: EdgeInsets.zero,
@@ -861,14 +950,31 @@ class MainScreen extends GetView<MainScreenController> {
                                       'assets/icon/svg/Email.svg',
                                       width: 25,
                                     ),
-                                    title: Text(
-                                      'chingsong15@gmail.com',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color:
-                                            Theme.of(
-                                              context,
-                                            ).colorScheme.secondary,
+                                    title: InkWell(
+                                      onTap: () async {
+                                        await Clipboard.setData(
+                                          ClipboardData(
+                                            text: 'chingsong15@gmail.com',
+                                          ),
+                                        );
+
+                                        showSnackBar(context);
+                                      },
+                                      borderRadius: BorderRadius.circular(5),
+                                      hoverColor: Colors.grey.withAlpha(50),
+                                      splashColor: Colors.grey.withAlpha(50),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2.0),
+                                        child: Text(
+                                          'chingsong15@gmail.com',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                Theme.of(
+                                                  context,
+                                                ).colorScheme.secondary,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     contentPadding: EdgeInsets.zero,
@@ -879,14 +985,26 @@ class MainScreen extends GetView<MainScreenController> {
                                       'assets/icon/svg/Telegram.svg',
                                       width: 25,
                                     ),
-                                    title: Text(
-                                      '015 528 384',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color:
-                                            Theme.of(
-                                              context,
-                                            ).colorScheme.secondary,
+                                    title: InkWell(
+                                      onTap: () async {
+                                        await Clipboard.setData(
+                                          ClipboardData(text: '015 528 384'),
+                                        );
+
+                                        showSnackBar(context);
+                                      },
+                                      borderRadius: BorderRadius.circular(5),
+                                      hoverColor: Colors.grey.withAlpha(50),
+                                      splashColor: Colors.grey.withAlpha(50),
+                                      child: Text(
+                                        '015 528 384',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color:
+                                              Theme.of(
+                                                context,
+                                              ).colorScheme.secondary,
+                                        ),
                                       ),
                                     ),
                                     contentPadding: EdgeInsets.zero,
@@ -904,6 +1022,21 @@ class MainScreen extends GetView<MainScreenController> {
           ),
         ),
       ],
+    );
+  }
+
+  void showSnackBar(context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Copied',
+          style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.surface.withAlpha(200),
+
+        shape: Border.all(color: Theme.of(context).colorScheme.tertiary),
+        elevation: 0,
+      ),
     );
   }
 }

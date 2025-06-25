@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:portfolio/responsive/responsive.dart';
@@ -18,31 +19,72 @@ class ContactScreen extends GetView<MainScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: CustomScrollView(
-        slivers: [
-          AppBarWidget(),
-          if (Responsive.isMobile(context))
-            SliverToBoxAdapter(child: BackDropMenuWidget()),
-          SliverFillRemaining(
-            hasScrollBody: true,
-            child: ListView(
-              children: [
-                _buildBanner(context),
-                _buildInfoSection(context),
-                const SizedBox(height: 20),
-                _buildContactNow(context),
+    return MouseRegion(
+      onHover: (event) {
+        controller.top.value = event.position.dy;
+        controller.left.value = event.position.dx;
+      },
+      onEnter: (event) {
+        controller.isEnter.value = true;
+      },
+      onExit: (event) {
+        controller.isEnter.value = false;
+      },
+      child: Stack(
+        children: [
+          Obx(() {
+            return Visibility(
+              visible: controller.isEnter.value,
+              child: AnimatedPositioned(
+                duration: const Duration(milliseconds: 100),
+                top: controller.top.value - 25,
+                left: controller.left.value - 25,
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 20,
+                        color: Colors.blueAccent.withAlpha(150),
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }),
+          Scaffold(
+            // backgroundColor: Theme.of(context).colorScheme.surface,
+            backgroundColor: Colors.transparent,
+            body: CustomScrollView(
+              slivers: [
+                AppBarWidget(),
+                if (Responsive.isMobile(context))
+                  SliverToBoxAdapter(child: BackDropMenuWidget()),
+                SliverFillRemaining(
+                  hasScrollBody: true,
+                  child: ListView(
+                    children: [
+                      _buildBanner(context),
+                      _buildInfoSection(context),
+                      const SizedBox(height: 20),
+                      _buildContactNow(context),
+                    ],
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Divider(
+                    color: Theme.of(context).colorScheme.tertiary,
+                    height: 50,
+                  ),
+                ),
+                SliverToBoxAdapter(child: BottomApp()),
               ],
             ),
           ),
-          SliverToBoxAdapter(
-            child: Divider(
-              color: Theme.of(context).colorScheme.tertiary,
-              height: 50,
-            ),
-          ),
-          SliverToBoxAdapter(child: BottomApp()),
         ],
       ),
     );
@@ -244,14 +286,31 @@ class ContactScreen extends GetView<MainScreenController> {
                                       'assets/icon/svg/Email.svg',
                                       width: 25,
                                     ),
-                                    title: Text(
-                                      'chingsong15@gmail.com',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color:
-                                            Theme.of(
-                                              context,
-                                            ).colorScheme.secondary,
+                                    title: InkWell(
+                                      onTap: () async {
+                                        await Clipboard.setData(
+                                          ClipboardData(
+                                            text: 'chingsong15@gmail.com',
+                                          ),
+                                        );
+
+                                        showSnackBar(context);
+                                      },
+                                      borderRadius: BorderRadius.circular(5),
+                                      hoverColor: Colors.grey.withAlpha(50),
+                                      splashColor: Colors.grey.withAlpha(50),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(2.0),
+                                        child: Text(
+                                          'chingsong15@gmail.com',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color:
+                                                Theme.of(
+                                                  context,
+                                                ).colorScheme.secondary,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                     contentPadding: EdgeInsets.zero,
@@ -262,14 +321,26 @@ class ContactScreen extends GetView<MainScreenController> {
                                       'assets/icon/svg/Telegram.svg',
                                       width: 25,
                                     ),
-                                    title: Text(
-                                      '015 528 384',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color:
-                                            Theme.of(
-                                              context,
-                                            ).colorScheme.secondary,
+                                    title: InkWell(
+                                      onTap: () async {
+                                        await Clipboard.setData(
+                                          ClipboardData(text: '015 528 384'),
+                                        );
+
+                                        showSnackBar(context);
+                                      },
+                                      borderRadius: BorderRadius.circular(5),
+                                      hoverColor: Colors.grey.withAlpha(50),
+                                      splashColor: Colors.grey.withAlpha(50),
+                                      child: Text(
+                                        '015 528 384',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color:
+                                              Theme.of(
+                                                context,
+                                              ).colorScheme.secondary,
+                                        ),
                                       ),
                                     ),
                                     contentPadding: EdgeInsets.zero,
@@ -347,7 +418,7 @@ class ContactScreen extends GetView<MainScreenController> {
             child: Form(
               key: controller.formKey,
               child: Container(
-                color: Theme.of(context).colorScheme.surface,
+                // color: Theme.of(context).colorScheme.surface,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -474,6 +545,21 @@ class ContactScreen extends GetView<MainScreenController> {
 
         return null;
       },
+    );
+  }
+
+  void showSnackBar(context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Copied',
+          style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.surface.withAlpha(200),
+
+        shape: Border.all(color: Theme.of(context).colorScheme.tertiary),
+        elevation: 0,
+      ),
     );
   }
 }

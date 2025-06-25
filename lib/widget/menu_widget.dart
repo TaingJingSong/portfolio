@@ -33,9 +33,7 @@ class MenuWidget extends GetView<MainScreenController> {
         }
       },
       onHover: (isHover) {},
-      overlayColor: WidgetStatePropertyAll(
-        Theme.of(context).colorScheme.surface,
-      ),
+      overlayColor: WidgetStatePropertyAll(Colors.transparent),
       child: Row(
         children: [
           const SizedBox(width: 20),

@@ -11,6 +11,8 @@ class MainScreenController extends GetxController {
   final showMenu = false.obs;
   List<ProjectModel> completedProjects = [];
   List<ProjectModel> onGoingProjects = [];
+  final left = 0.0.obs, top = 0.0.obs;
+  final isEnter = false.obs;
 
   final nameTextController = TextEditingController();
   final emailTextController = TextEditingController();

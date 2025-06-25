@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:portfolio/data/fun_fact.dart';
 import 'package:portfolio/data/skill.dart';
 import 'package:portfolio/responsive/responsive.dart';
+import 'package:portfolio/view/mainscreen/mainscreen_controller.dart';
 import 'package:portfolio/widget/app_bar.dart';
 import 'package:portfolio/widget/app_bottom.dart';
 import 'package:portfolio/widget/backdrop_menu_widget.dart';
@@ -10,31 +11,72 @@ import 'package:portfolio/widget/boxline_widget.dart';
 import 'package:portfolio/widget/dotbox_widget.dart';
 import 'package:portfolio/widget/skill_widget.dart';
 
-class AboutScreen extends StatelessWidget {
+class AboutScreen extends GetView<MainScreenController> {
   const AboutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: CustomScrollView(
-        slivers: [
-          AppBarWidget(),
-          if (Responsive.isMobile(context))
-            SliverToBoxAdapter(child: BackDropMenuWidget()),
-          SliverList.list(
-            children: [
-              _buildBanner(context),
-              _buildInfoSection(context),
-              _buildSkillsSection(context),
-              _buildFunFactsSection(context),
-              Divider(
-                color: Theme.of(context).colorScheme.tertiary,
-                height: 50,
+    return MouseRegion(
+      onHover: (event) {
+        controller.top.value = event.position.dy;
+        controller.left.value = event.position.dx;
+      },
+      onEnter: (event) {
+        controller.isEnter.value = true;
+      },
+      onExit: (event) {
+        controller.isEnter.value = false;
+      },
+      child: Stack(
+        children: [
+          Obx(() {
+            return Visibility(
+              visible: controller.isEnter.value,
+              child: AnimatedPositioned(
+                duration: const Duration(milliseconds: 100),
+                top: controller.top.value - 25,
+                left: controller.left.value - 25,
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 20,
+                        color: Colors.blueAccent.withAlpha(150),
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ],
+            );
+          }),
+          Scaffold(
+            // backgroundColor: Theme.of(context).colorScheme.surface,
+            backgroundColor: Colors.transparent,
+            body: CustomScrollView(
+              slivers: [
+                AppBarWidget(),
+                if (Responsive.isMobile(context))
+                  SliverToBoxAdapter(child: BackDropMenuWidget()),
+                SliverList.list(
+                  children: [
+                    _buildBanner(context),
+                    _buildInfoSection(context),
+                    _buildSkillsSection(context),
+                    _buildFunFactsSection(context),
+                    Divider(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      height: 50,
+                    ),
+                  ],
+                ),
+                SliverFillRemaining(hasScrollBody: false, child: BottomApp()),
+              ],
+            ),
           ),
-          SliverFillRemaining(hasScrollBody: false, child: BottomApp()),
         ],
       ),
     );

@@ -12,6 +12,7 @@ class AppBarWidget extends GetView<MainScreenController> {
   Widget build(BuildContext context) {
     return SliverAppBar(
       automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
       title: Row(
         children: [
           Row(

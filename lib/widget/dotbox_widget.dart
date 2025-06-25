@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DotBoxWidget extends StatelessWidget {
+class DotBoxWidget extends StatefulWidget {
   const DotBoxWidget({
     super.key,
     this.count = 25,
@@ -12,18 +12,40 @@ class DotBoxWidget extends StatelessWidget {
   final double width, height, space;
 
   @override
+  State<DotBoxWidget> createState() => _DotBoxWidgetState();
+}
+
+class _DotBoxWidgetState extends State<DotBoxWidget> {
+  double scale = 1;
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
-      child: GridView.count(
-        crossAxisCount: 5,
-        mainAxisSpacing: space,
-        crossAxisSpacing: space,
-        childAspectRatio: 1,
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        children: List.generate(count, (_) => _buildDot(context)),
+    return MouseRegion(
+      onEnter: (_) {
+        setState(() {
+          scale = 1.2;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          scale = 1;
+        });
+      },
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 150),
+        scale: scale,
+        child: SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: GridView.count(
+            crossAxisCount: 5,
+            mainAxisSpacing: widget.space,
+            crossAxisSpacing: widget.space,
+            childAspectRatio: 1,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            children: List.generate(widget.count, (_) => _buildDot(context)),
+          ),
+        ),
       ),
     );
   }

@@ -16,24 +16,65 @@ class WorkScreen extends GetView<MainScreenController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        body: CustomScrollView(
-          slivers: [
-            AppBarWidget(),
-            if (Responsive.isMobile(context))
-              SliverToBoxAdapter(child: BackDropMenuWidget()),
-            SliverList.list(
-              children: [
-                _buildBanner(context),
-                _buildCompletedProjectsSection(context),
-                _buildOnGoingProjectsSection(context),
-                Divider(
-                  color: Theme.of(context).colorScheme.tertiary,
-                  height: 50,
+      child: MouseRegion(
+        onHover: (event) {
+          controller.top.value = event.position.dy;
+          controller.left.value = event.position.dx;
+        },
+        onEnter: (event) {
+          controller.isEnter.value = true;
+        },
+        onExit: (event) {
+          controller.isEnter.value = false;
+        },
+        child: Stack(
+          children: [
+            Obx(() {
+              return Visibility(
+                visible: controller.isEnter.value,
+                child: AnimatedPositioned(
+                  duration: const Duration(milliseconds: 100),
+                  top: controller.top.value - 25,
+                  left: controller.left.value - 25,
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 20,
+                          color: Colors.blueAccent.withAlpha(150),
+                          spreadRadius: 2,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                BottomApp(),
-              ],
+              );
+            }),
+            Scaffold(
+              // backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: Colors.transparent,
+              body: CustomScrollView(
+                slivers: [
+                  AppBarWidget(),
+                  if (Responsive.isMobile(context))
+                    SliverToBoxAdapter(child: BackDropMenuWidget()),
+                  SliverList.list(
+                    children: [
+                      _buildBanner(context),
+                      _buildCompletedProjectsSection(context),
+                      _buildOnGoingProjectsSection(context),
+                      Divider(
+                        color: Theme.of(context).colorScheme.tertiary,
+                        height: 50,
+                      ),
+                      BottomApp(),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
