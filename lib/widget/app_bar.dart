@@ -95,7 +95,7 @@ class AppBarWidget extends GetView<MainScreenController> {
                       color: Theme.of(context).colorScheme.secondary,
                     ),
                     underline: SizedBox(),
-                    focusColor: Theme.of(context).colorScheme.surface,
+                    focusColor: Colors.transparent,
                     dropdownColor: Theme.of(context).colorScheme.surface,
                   );
                 }),

@@ -33,32 +33,34 @@ class MainScreen extends GetView<MainScreenController> {
         },
         onEnter: (event) {
           controller.isEnter.value = true;
+          controller.width.value += 50;
+          controller.height.value += 50;
         },
         onExit: (event) {
           controller.isEnter.value = false;
+          controller.width.value -= 50;
+          controller.height.value -= 50;
         },
         child: Stack(
           children: [
             Obx(() {
-              return Visibility(
-                visible: controller.isEnter.value,
-                child: AnimatedPositioned(
-                  duration: const Duration(milliseconds: 100),
-                  top: controller.top.value - 25,
-                  left: controller.left.value - 25,
-                  child: Container(
-                    height: 50,
-                    width: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 20,
-                          color: Colors.blueAccent.withAlpha(150),
-                          spreadRadius: 2,
-                        ),
-                      ],
-                    ),
+              return AnimatedPositioned(
+                duration: const Duration(milliseconds: 100),
+                top: controller.top.value - 25,
+                left: controller.left.value - 25,
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  height: controller.height.value,
+                  width: controller.width.value,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: controller.width.value,
+                        color: Colors.blueAccent.withAlpha(150),
+                        spreadRadius: 2,
+                      ),
+                    ],
                   ),
                 ),
               );

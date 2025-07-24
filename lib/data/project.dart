@@ -98,4 +98,17 @@ List<ProjectModel> projects = [
       ),
     ],
   ),
+  ProjectModel(
+    imagePath: 'assets/image/FacebookClone.png',
+    title: 'Facebook Clone (Flutter + Express.js)',
+    desc: 'Clone of Facebook app',
+    links: [
+      LinkModel(
+        title: 'Github',
+        link:
+            'https://github.com/JingSongJai/facebook_clone-Flutter-Node.js-Express-',
+        icon: SvgPicture.asset('assets/icon/svg/Github.svg', width: 22),
+      ),
+    ],
+  ),
 ];

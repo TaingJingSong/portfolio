@@ -7,18 +7,19 @@ import 'package:web/web.dart' as html;
 class MainScreenController extends GetxController {
   final selectedMenu = 0.obs;
   final selectedLanguage = 'EN'.obs;
-  final menus = ['home', 'works', 'about-me', 'contacts'];
   final showMenu = false.obs;
-  List<ProjectModel> completedProjects = [];
-  List<ProjectModel> onGoingProjects = [];
-  final left = 0.0.obs, top = 0.0.obs;
+  final left = 0.0.obs, top = 0.0.obs, width = 0.0.obs, height = 0.0.obs;
   final isEnter = false.obs;
 
+  final menus = ['home', 'works', 'about-me', 'contacts'];
+  List<ProjectModel> completedProjects = [];
+  List<ProjectModel> onGoingProjects = [];
   final nameTextController = TextEditingController();
   final emailTextController = TextEditingController();
   final titleTextController = TextEditingController();
   final messageTextController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final scrollController = ScrollController();
 
   set switchMenu(int index) => selectedMenu.value = index;
 
