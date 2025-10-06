@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
       getPages: AppPage.pages,
       enableLog: true,
       useInheritedMediaQuery: true,
-      defaultTransition: Transition.fadeIn,
+      defaultTransition: Transition.noTransition,
     );
   }
 }
