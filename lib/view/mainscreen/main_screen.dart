@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -19,6 +20,7 @@ import 'package:portfolio/widget/dotbox_widget.dart';
 import 'package:portfolio/widget/project_widget.dart';
 import 'package:portfolio/widget/quote_widget.dart';
 import 'package:portfolio/widget/skill_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainScreen extends GetView<MainScreenController> {
   const MainScreen({super.key});
@@ -353,18 +355,22 @@ class MainScreen extends GetView<MainScreenController> {
           Expanded(
             child: RichText(
               text: TextSpan(
-                text: 'Currently working on '.tr,
+                text: 'Currently working at '.tr,
                 children: [
                   TextSpan(
-                    text: 'Portfolio'.tr,
+                    text: 'Innotech Solution'.tr,
                     style: TextStyle(
                       fontFamily:
                           Get.locale == Locale('km')
                               ? 'KhmerFont'
                               : 'EnglishFont',
                       fontSize: 10,
+                      decoration: TextDecoration.underline,
                       color: Theme.of(context).colorScheme.tertiary,
                     ),
+                    recognizer: TapGestureRecognizer()..onTap = () async {
+                      await launchUrl(Uri.parse('https://www.facebook.com/p/InnoTech-Solution-61561416010591/'));
+                    }
                   ),
                 ],
                 style: TextStyle(
