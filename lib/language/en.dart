@@ -27,7 +27,7 @@ Map<String, String> en = {
   'Media': 'Media',
   'Front-end and cross-platform developer.':
       'Front-end and cross-platform developer.',
-  '© Copyright 2025. Made by ChingSong': '© Copyright 2025. Made by ChingSong',
+  '© Copyright {year}. Made by ChingSong': '© Copyright {year}. Made by ChingSong',
   'Hello, I\'m ChingSong': 'Hello, I\'m ChingSong',
   'I’m a Flutter mobile developer with a strong passion for building modern, user-friendly apps. I have experience creating real-world projects using Flutter, Dart, GetX, and Figma, and I enjoy turning ideas into clean, functional mobile applications.':
       'I’m a Flutter mobile developer with a strong passion for building modern, user-friendly apps. I have experience creating real-world projects using Flutter, Dart, GetX, and Figma, and I enjoy turning ideas into clean, functional mobile applications.',

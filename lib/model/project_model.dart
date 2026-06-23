@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ProjectModel {
   final String imagePath, title, desc;
   final List<LinkModel> links;
@@ -16,7 +14,13 @@ class ProjectModel {
 
 class LinkModel {
   final String title, link;
-  final Widget? icon;
+  final String? iconPath;
+  final String? icon;
 
-  LinkModel({required this.title, required this.link, this.icon});
+  LinkModel({
+    required this.title,
+    required this.link,
+    this.iconPath,
+    this.icon,
+  });
 }

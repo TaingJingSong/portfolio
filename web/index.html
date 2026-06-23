@@ -1,102 +1,140 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
   <base href="/">
-
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
-
-  <!-- iOS meta tags & icons -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="My personal portfolio.">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="portfolio">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.ico"/>
-
   <title>Taing ChingSong</title>
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+
   <style>
-    .container{
-      width: 100vw;
-      height: 100vh;
+    #loading_indicator {
+      position: fixed;
+      inset: 0;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: auto;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
       background-color: #282C33;
-  }
-
-  .indicator{
-      width: 200px;
-      height: 200px;
-      margin-bottom: 15px; 
-  }
-
-  .progress-bar {
-    width: 100px;
-    background-color: #f3f3f3;
-    border-radius: 4px;
-  }
-
-  @keyframes progress {
-    0% {
-      width: 50%;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
-    100% {
-      width: 100%;
+
+    #loading_indicator.hidden {
+      opacity: 0;
+      visibility: hidden;
     }
-  }
 
-  .progress-bar-fill {
-    display: block;
-    height: 5px;  
-    background-color: #46494b;
-    border-radius: 4px;
-    transition: width 0.2s ease-in;
-    animation: progress 5s ease-in-out forwards;
-  }
+    .indicator {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      animation: fadeIn 0.6s ease forwards;
+    }
 
-  body {
-    margin: 0; 
-    background-color: #282C33;
-  }
+    .progress-track {
+      width: 140px;
+      height: 3px;
+      background-color: #3a3f47;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #C8A96E;
+      border-radius: 99px;
+      transition: width 0.3s ease;
+    }
+
+    .loading-label {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: #6b7280;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
   </style>
 </head>
 <body>
 
-  <div id="loading_indicator" class="container">
-    <img class="indicator" src="./assets/splash_logo.gif"/> 
-    <!-- <div class="progress-bar">
-      <div class="progress-bar-fill" style="width: 50%;"></div>
-    </div> -->
+  <!-- Loading Splash Screen -->
+  <div id="loading_indicator">
+    <!-- Load the splash gif from web assets -->
+    <img class="indicator" src="/assets/splash_logo.gif" alt="Loading"/>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress_fill"></div>
+    </div>
+    <span class="loading-label">Loading...</span>
   </div>
 
-  <script src="flutter_bootstrap.js" async></script>
+  <!-- Mouse Glow Cursor -->
+  <div id="cursor-glow"></div>
 
+  <!-- Smooth JavaScript cursor glow listener -->
   <script>
-    window.onload= function(){
-      setTimeout(() => {
-        var loadingIndicator = document.getElementById('loading_indicator');
-        if(loadingIndicator)loadingIndicator.remove()
-      }, 5000);
-    }
+    document.addEventListener('mousemove', (e) => {
+      const glow = document.getElementById('cursor-glow');
+      if (glow) {
+        glow.style.top = e.clientY + 'px';
+        glow.style.left = e.clientX + 'px';
+      }
+    });
   </script>
+
+  <!-- Progress bar simulator and dismiss script -->
+  <script>
+    (function () {
+      const fill = document.getElementById('progress_fill');
+      const loader = document.getElementById('loading_indicator');
+      let progress = 0;
+      const MAX_AUTO = 90;
+
+      const interval = setInterval(() => {
+        const step = Math.random() * 10 + 2;
+        progress = Math.min(progress + step, MAX_AUTO);
+        if (fill) fill.style.width = progress + '%';
+        if (progress >= MAX_AUTO) clearInterval(interval);
+      }, 200);
+
+      window.dismissLoader = function() {
+        clearInterval(interval);
+        if (fill) fill.style.width = '100%';
+        setTimeout(() => {
+          if (loader) {
+            loader.classList.add('hidden');
+            setTimeout(() => loader.remove(), 500);
+          }
+        }, 200);
+      };
+
+      // Fallback: dismiss after 5 seconds
+      setTimeout(window.dismissLoader, 5000);
+    })();
+  </script>
+
+  <!-- Jaspr entrypoint script -->
+  <script defer src="main.dart.js"></script>
+
 </body>
 </html>
