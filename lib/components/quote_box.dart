@@ -3,6 +3,7 @@ import 'package:jaspr/jaspr.dart';
 
 import '../language/translation_extension.dart';
 
+@client
 class QuoteBox extends StatelessComponent {
   const QuoteBox({super.key});
 

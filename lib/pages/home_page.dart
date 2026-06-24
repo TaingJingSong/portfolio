@@ -1,20 +1,24 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import '../language/translation_extension.dart';
-import '../data/project.dart';
-import '../data/skill.dart';
-import '../components/quote_box.dart';
-import '../components/project_card.dart';
-import '../components/skill_card.dart';
-import '../components/contact_form.dart';
+import 'package:portfolio/language/translation_extension.dart';
+import 'package:portfolio/data/project.dart';
+import 'package:portfolio/data/skill.dart';
+import 'package:portfolio/components/quote_box.dart';
+import 'package:portfolio/components/project_card.dart';
+import 'package:portfolio/components/skill_card.dart';
+import 'package:portfolio/components/contact_form.dart';
 
+@client
 class HomePage extends StatelessComponent {
   const HomePage({super.key});
 
   @override
   Component build(BuildContext context) {
     return div(classes: 'container gap-60', [
+      div(id: 'stars', []),
+      div(id: 'stars2', []),
+      div(id: 'stars3', []),
       // 1. Hero Section
       section(classes: 'glass-wrap hero-flex', [
         div(classes: 'hero-left', [
@@ -32,8 +36,8 @@ class HomePage extends StatelessComponent {
           ]),
           Link(
             to: '/contact',
-            classes: 'btn-primary',
-            child: Component.text('Contact me!!'.tr(context)),
+            classes: 'fancy',
+            child: span(classes: 'text', [Component.text('Contact me!!'.tr(context))]),
           ),
         ]),
         div(classes: 'hero-right', [
@@ -82,9 +86,8 @@ class HomePage extends StatelessComponent {
           ),
         ]),
         div(classes: 'project-grid', [
-          // Take first 4 projects for homepage preview
           for (final project in projects.take(4))
-            ProjectCard(project: project),
+            ProjectCard(project: project), 
         ]),
       ]),
 
@@ -98,28 +101,12 @@ class HomePage extends StatelessComponent {
           div(classes: 'section-line', []),
         ]),
         div(classes: 'skills-flex', [
-          // Left Side: Decorative layout
           div(classes: 'skills-left', [
-            div(
-              classes: 'box-line',
-              styles: Styles(width: 50.px, height: 50.px),
-              [],
-            ),
-            div(
-              classes: 'dot-box',
-              styles: Styles(
-                width: 50.px,
-                height: 50.px,
-                margin: Margin.only(top: 40.px, left: 30.px),
-              ),
-              [for (var i = 0; i < 25; i++) span([])],
-            ),
+            div(classes: 'box-line', []),
+            div(classes: 'dot-box', [for (var i = 0; i < 25; i++) span([])]),
             img(
               src: '/assets/icon/svg/Logo.svg',
-              styles: Styles(
-                width: 80.px,
-                margin: Margin.only(top: 100.px, left: 80.px),
-              ),
+              classes: 'skill-logo-decor',
               alt: 'Skill Logo Decor',
             ),
           ]),
@@ -200,7 +187,7 @@ class HomePage extends StatelessComponent {
                   classes: 'contact-item-icon',
                   alt: 'Telegram',
                 ),
-                span(classes: 'contact-item-text', [Component.text('chingsong15@gmail.com')]),
+                span(classes: 'contact-item-text', [Component.text('@jingsongtaing')]),
               ]),
             ]),
           ]),

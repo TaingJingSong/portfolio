@@ -1,9 +1,18 @@
-import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr/dom.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import '../app.dart';
-import '../language/translation_extension.dart';
+import 'package:portfolio/app.dart';
+import 'package:portfolio/language/translation_extension.dart';
 
+@Import.onWeb('package:portfolio/utils/theme_utils.dart', show: [
+  #getStoredTheme,
+  #storeTheme,
+  #addBodyClass,
+  #removeBodyClass,
+])
+import 'header.imports.dart';
+
+@client
 class Header extends StatefulComponent {
   const Header({super.key});
 
@@ -13,6 +22,46 @@ class Header extends StatefulComponent {
 
 class _HeaderState extends State<Header> {
   bool isMenuOpen = false;
+
+  @override
+  void initState() {
+    super.initState();
+    try {
+      final saved = getStoredTheme();
+      if (saved == 'light') {
+        addBodyClass('light');
+        Future.microtask(() {
+          final state = AppState.of(context);
+          state?.onThemeChanged(false);
+        });
+      }
+    } catch (_) {
+      // server-side: browser APIs not available, skip
+    }
+  }
+
+  void toggleTheme(AppState? state) {
+    print(state);
+    if (state == null) return;
+    final goingLight = state.isDark;
+    state.onThemeChanged(!goingLight);
+    setState(() {});
+    if (goingLight) {
+      addBodyClass('light');
+      storeTheme('light');
+    } else {
+      removeBodyClass('light');
+      storeTheme('dark');
+    }
+  }
+
+  void toggleMenu() {
+    setState(() => isMenuOpen = !isMenuOpen);
+  }
+
+  void closeMenu() {
+    if (isMenuOpen) setState(() => isMenuOpen = false);
+  }
 
   @override
   Component build(BuildContext context) {
@@ -31,28 +80,33 @@ class _HeaderState extends State<Header> {
         _buildNavLink(context, '/work', 'works', currentRoute == '/work'),
         _buildNavLink(context, '/about', 'about-me', currentRoute == '/about'),
         _buildNavLink(context, '/contact', 'contacts', currentRoute == '/contact'),
+
+        // Theme Toggle Button
+        button(
+          classes: 'theme-toggle',
+          onClick: () => toggleTheme(state),
+          [Component.text(state?.isDark ?? true ? '☀ Light' : '☾ Dark')],
+        ),
         
         // Language Switcher Dropdown
         select(
           classes: 'lang-switcher',
-          onChange: (value) {
-            state.onLanguageChanged(value.firstOrNull ?? 'en');
+          // Standard HTML change event logic
+          onChange: (event) {
+            final value = event.firstOrNull;
+            if (value != null) state?.onLanguageChanged(value);
           },
           [
-            option(value: 'EN', selected: state.locale == 'en', [Component.text('EN'.tr(context))]),
-            option(value: 'KM', selected: state.locale == 'km', [Component.text('KM'.tr(context))]),
+            option(value: 'en', selected: state?.locale == 'en', [Component.text('EN')]),
+            option(value: 'km', selected: state?.locale == 'km', [Component.text('KM')]),
           ],
         ),
       ]),
       
       // Mobile Hamburger Toggle
-      div(
+      button(
         classes: 'menu-toggle',
-        // onClick: () {
-        //   setState(() {
-        //     isMenuOpen = !isMenuOpen;
-        //   });
-        // },
+        onClick: () => toggleMenu(),
         [
           img(
             src: isMenuOpen ? '/assets/icon/svg/Cancel.svg' : '/assets/icon/svg/Menu.svg',
@@ -65,39 +119,20 @@ class _HeaderState extends State<Header> {
       // Mobile Nav Menu Overlay
       if (isMenuOpen)
         div(classes: 'mobile-nav-menu open', [
-          _buildNavLink(context, '/', 'home', currentRoute == '/', isMobile: true),
-          _buildNavLink(context, '/work', 'works', currentRoute == '/work', isMobile: true),
-          _buildNavLink(context, '/about', 'about-me', currentRoute == '/about', isMobile: true),
-          _buildNavLink(context, '/contact', 'contacts', currentRoute == '/contact', isMobile: true),
-          
-          select(
-            classes: 'lang-switcher',
-            onChange: (value) {
-              state.onLanguageChanged(value.firstOrNull ?? 'en');
-              setState(() {
-                isMenuOpen = false;
-              });
-            },
-            [
-              option(value: 'EN', selected: state.locale == 'en', [Component.text('EN'.tr(context))]),
-              option(value: 'KM', selected: state.locale == 'km', [Component.text('KM'.tr(context))]),
-            ],
-          ),
+          _buildNavLink(context, '/', 'home', currentRoute == '/', onTap: closeMenu),
+          _buildNavLink(context, '/work', 'works', currentRoute == '/work', onTap: closeMenu),
+          _buildNavLink(context, '/about', 'about-me', currentRoute == '/about', onTap: closeMenu),
+          _buildNavLink(context, '/contact', 'contacts', currentRoute == '/contact', onTap: closeMenu),
         ]),
     ]);
   }
 
-  Component _buildNavLink(BuildContext context, String path, String labelKey, bool isActive, {bool isMobile = false}) {
+  Component _buildNavLink(BuildContext context, String path, String labelKey, bool isActive, {VoidCallback? onTap}) {
     return Link(
       to: path,
-      classes: 'nav-link${isActive ? ' active' : ''}',
-      // onClick: isMobile
-      //     ? () {
-      //         setState(() {
-      //           isMenuOpen = false;
-      //         });
-      //       }
-      //     : null,
+      classes: 'nav-link${isActive ? '.active' : ''}',
+      // onClick is the standard event listener for elements in Jaspr
+      // onClick: (_) => onTap?.call(),
       child: span([
         span([Component.text('#')]),
         Component.text(labelKey.tr(context)),

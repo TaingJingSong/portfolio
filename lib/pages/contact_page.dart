@@ -1,8 +1,9 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import '../language/translation_extension.dart';
-import '../components/contact_form.dart';
+import 'package:portfolio/language/translation_extension.dart';
+import 'package:portfolio/components/contact_form.dart';
 
+@client
 class ContactPage extends StatelessComponent {
   const ContactPage({super.key});
 
@@ -16,7 +17,7 @@ class ContactPage extends StatelessComponent {
           Component.text('contacts'.tr(context)),
         ]),
         p(classes: 'hero-subtitle', [
-          Component.text('Contact whenever'.tr(context)),
+          Component.text('contact-whenever'.tr(context)),
         ]),
       ]),
 

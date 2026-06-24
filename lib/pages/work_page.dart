@@ -1,16 +1,17 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import '../language/translation_extension.dart';
-import '../data/project.dart';
-import '../components/project_card.dart';
+import 'package:portfolio/language/translation_extension.dart';
+import 'package:portfolio/data/project.dart';
+import 'package:portfolio/components/project_card.dart';
 
+@client
 class WorkPage extends StatelessComponent {
   const WorkPage({super.key});
 
   @override
   Component build(BuildContext context) {
-    final completed = projects.where((p) => p.isCompleted).toList();
-    final ongoing = projects.where((p) => !p.isCompleted).toList();
+    final completed = projects.where((proj) => proj.isCompleted).toList();
+    final ongoing = projects.where((proj) => !proj.isCompleted).toList();
 
     return div(classes: 'container gap-60', [
       // Banner
@@ -20,7 +21,7 @@ class WorkPage extends StatelessComponent {
           Component.text('projects'.tr(context)),
         ]),
         p(classes: 'hero-subtitle', [
-          Component.text('List of my projects'.tr(context)),
+          Component.text('list-of-my-projects'.tr(context)),
         ]),
       ]),
 

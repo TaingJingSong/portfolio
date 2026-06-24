@@ -1,10 +1,11 @@
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
-import '../language/translation_extension.dart';
-import '../data/skill.dart';
-import '../data/fun_fact.dart';
-import '../components/skill_card.dart';
+import 'package:portfolio/language/translation_extension.dart';
+import 'package:portfolio/data/skill.dart';
+import 'package:portfolio/data/fun_fact.dart';
+import 'package:portfolio/components/skill_card.dart';
 
+@client
 class AboutPage extends StatelessComponent {
   const AboutPage({super.key});
 
@@ -18,7 +19,7 @@ class AboutPage extends StatelessComponent {
           Component.text('about-me'.tr(context)),
         ]),
         p(classes: 'hero-subtitle', [
-          Component.text('Who am i?'.tr(context)),
+          Component.text('who-am-i'.tr(context)),
         ]),
       ]),
 

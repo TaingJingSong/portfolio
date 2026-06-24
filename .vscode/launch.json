@@ -7,7 +7,7 @@
         {
             "name": "my_portfolio",
             "request": "launch",
-            "type": "dart"
+            "type": "jaspr"
         }
     ]
 }

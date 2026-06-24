@@ -10,7 +10,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/dictionary-winform-api',
-        icon: 'assets/icon/svg/Github.svg',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -23,7 +23,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/note_app_supabase',
-        icon: 'assets/icon/svg/Github.svg',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -36,7 +36,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/project-cv-generator',
-        icon: 'assets/icon/svg/Github.svg',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -49,7 +49,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/flutter_dictionary_api',
-        icon: 'assets/icon/svg/Github.svg',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -62,7 +62,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/project_music_player_c-_winform',
-        icon: 'assets/icon/svg/Github.svg',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -74,7 +74,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/youtube_downloader_flutter',
-        icon: 'assets/icon/svg/Github.svg',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -86,12 +86,11 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/project_expense_tracker',
-        icon: 'assets/icon/svg/Github.svg',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
       LinkModel(
         title: 'Live',
-        link:
-            'https://project-expense-tracker-git-master-taing-chingsongs-projects.vercel.app/',
+        link: 'https://project-expense-tracker-git-master-taing-chingsongs-projects.vercel.app/',
         icon: '<~>',
       ),
     ],
@@ -103,9 +102,8 @@ List<ProjectModel> projects = [
     links: [
       LinkModel(
         title: 'Github',
-        link:
-            'https://github.com/JingSongJai/facebook_clone-Flutter-Node.js-Express-',
-        icon: 'assets/icon/svg/Github.svg',
+        link: 'https://github.com/JingSongJai/facebook_clone-Flutter-Node.js-Express-',
+        iconPath: '/assets/icon/svg/Github.svg',
       ),
     ],
   ),

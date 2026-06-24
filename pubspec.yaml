@@ -1,21 +1,29 @@
 name: portfolio
-description: "My portfolio built with Jaspr."
-publish_to: "none"
-version: 0.1.0
+description: A new Jaspr project
+version: 0.0.1
 
 environment:
-  sdk: '>=3.8.0 <4.0.0'
+  sdk: ^3.10.0
 
 dependencies:
+  flutter:
+     sdk: flutter
   jaspr: ^0.23.1
+  jaspr_flutter_embed: ^0.4.11
   jaspr_router: ^0.8.2
-  web: ^1.1.1
+  universal_web: ^1.0.0
 
 dev_dependencies:
-  jaspr_builder: ^0.23.1
-  build_runner: ^2.4.8
-  lints: ^3.0.0
+  build_runner: ^2.10.0
   build_web_compilers: ^4.8.0
+  flutter_lints: ^5.0.0
+  flutter_test:
+    sdk: flutter
+  jaspr_builder: ^0.23.1
 
 jaspr:
-  mode: client
+  mode: static
+  flutter: embedded
+
+flutter:
+  uses-material-design: true

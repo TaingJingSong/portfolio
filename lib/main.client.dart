@@ -1,8 +1,13 @@
+library;
+
 import 'package:jaspr/client.dart';
-import 'main.client.options.dart';
-import 'app.dart';
+import 'package:portfolio/main.client.options.dart';
 
 void main() {
-  Jaspr.initializeApp(options: defaultClientOptions);
-  runApp(const App());
+  Jaspr.initializeApp(
+    options: defaultClientOptions,
+  );
+  runApp(
+    const ClientApp(),
+  );
 }

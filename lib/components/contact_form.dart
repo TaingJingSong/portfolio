@@ -1,101 +1,141 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
-import 'package:web/web.dart' as html;
 import '../language/translation_extension.dart';
 
-class ContactForm extends StatelessComponent {
+class ContactForm extends StatefulComponent {
   const ContactForm({super.key});
 
-  void _handleSubmit(BuildContext context) {
-    final nameInput = html.document.getElementById('form-name') as html.HTMLInputElement?;
-    final emailInput = html.document.getElementById('form-email') as html.HTMLInputElement?;
-    final titleInput = html.document.getElementById('form-title') as html.HTMLInputElement?;
-    final messageInput = html.document.getElementById('form-message') as html.HTMLTextAreaElement?;
+  @override
+  State<ContactForm> createState() => _ContactFormState();
+}
 
-    if (nameInput == null || emailInput == null || titleInput == null || messageInput == null) return;
+class _ContactFormState extends State<ContactForm> {
+  String name = '';
+  String email = '';
+  String title = '';
+  String message = '';
 
-    final name = nameInput.value.trim();
-    final email = emailInput.value.trim();
-    final title = titleInput.value.trim();
-    final message = messageInput.value.trim();
+  bool showToast = false;
+  String toastMessage = '';
 
-    if (name.isEmpty || email.isEmpty || title.isEmpty || message.isEmpty) {
-      _showToast(context, 'Please fill in all fields!');
-      return;
-    }
-
-    final mailtoLink = Uri(
+  // 1. Dynamically compute the mailto link based on current input state
+  String get computedMailto {
+    return Uri(
       scheme: 'mailto',
       path: 'chingsong15@gmail.com',
       query: Uri.encodeFull(
-        'subject=$title&body=From: $name <$email>\n\n$message',
+        'subject=${title.trim()}&body=From: ${name.trim()} <${email.trim()}>\n\n${message.trim()}',
       ),
     ).toString();
-
-    html.window.open(mailtoLink, '_self');
   }
 
-  void _showToast(BuildContext context, String message) {
-    final toast = html.document.getElementById('toast') as html.HTMLElement?;
-    if (toast != null) {
-      toast.innerText = message;
-      toast.style.display = 'block';
-      Future.delayed(const Duration(seconds: 2), () {
-        toast.style.display = 'none';
-      });
-    }
+  // 2. Check if all required fields are filled
+  bool get isFormValid {
+    return name.trim().isNotEmpty && 
+           email.trim().isNotEmpty && 
+           title.trim().isNotEmpty && 
+           message.trim().isNotEmpty;
+  }
+
+  void _showToast(String msg) {
+    setState(() {
+      toastMessage = msg;
+      showToast = true;
+    });
+
+    Future.delayed(const Duration(seconds: 2), () {
+      if (mounted) {
+        setState(() {
+          showToast = false;
+        });
+      }
+    });
   }
 
   @override
   Component build(BuildContext context) {
-    return div(classes: 'contact-form', [
-      div(classes: 'form-row', [
-        div(classes: 'form-group', [
-          input(
-            type: InputType.text,
-            id: 'form-name',
-            classes: 'form-input',
-            attributes: {
-              'placeholder': 'Name'.tr(context),
-              'required': '',
-            },
-          ),
+    return form(
+      classes: 'contact-form',
+      events: {
+        // Prevent the form from trying to refresh the page if the user presses "Enter"
+        'submit': (e) => e.preventDefault(),
+      },
+      [
+        div(classes: 'form-row', [
+          div(classes: 'form-group', [
+            input(
+              type: InputType.text,
+              classes: 'form-input',
+              attributes: {
+                'placeholder': 'Name'.tr(context),
+                'required': '',
+              },
+              events: {
+                // Use setState so the component rebuilds and updates the link
+                'input': (e) => setState(() => name = (e.target as dynamic).value),
+              },
+            ),
+          ]),
+          div(classes: 'form-group', [
+            input(
+              type: InputType.email,
+              classes: 'form-input',
+              attributes: {
+                'placeholder': 'Email'.tr(context),
+                'required': '',
+              },
+              events: {
+                'input': (e) => setState(() => email = (e.target as dynamic).value),
+              },
+            ),
+          ]),
         ]),
-        div(classes: 'form-group', [
-          input(
-            type: InputType.email,
-            id: 'form-email',
-            classes: 'form-input',
-            attributes: {
-              'placeholder': 'Email'.tr(context),
-              'required': '',
-            },
+        input(
+          type: InputType.text,
+          classes: 'form-input',
+          attributes: {
+            'placeholder': 'Title'.tr(context),
+            'required': '',
+          },
+          events: {
+            'input': (e) => setState(() => title = (e.target as dynamic).value),
+          },
+        ),
+        textarea(
+          classes: 'form-input',
+          placeholder: 'Message'.tr(context),
+          required: true,
+          events: {
+            'input': (e) => setState(() => message = (e.target as dynamic).value),
+          },
+          [],
+        ),
+        
+        // 3. The SSR-Safe Magic: Use an anchor tag disguised as a button
+        a(
+          // If valid, use the mailto link. If invalid, point to nowhere (#).
+          href: isFormValid ? computedMailto : '#',
+          classes: 'btn-primary',
+          styles: Styles(
+            display: Display.inlineBlock,
+            textDecoration: TextDecoration.none, // Ensures the link doesn't have an underline
           ),
-        ]),
-      ]),
-      input(
-        type: InputType.text,
-        id: 'form-title',
-        classes: 'form-input',
-        attributes: {
-          'placeholder': 'Title'.tr(context),
-          'required': '',
-        },
-      ),
-      textarea(
-        id: 'form-message',
-        classes: 'form-input',
-        placeholder: 'Message'.tr(context),
-        required: true,
-        [],
-      ),
-      button(
-        classes: 'btn-primary',
-        onClick: () => _handleSubmit(context),
-        [Component.text('Send'.tr(context))],
-      ),
-      // Toast notification placeholder
-      div(id: 'toast', []),
-    ]);
+          events: {
+            'click': (e) {
+              if (!isFormValid) {
+                // Block the link from navigating if the form isn't fully filled out
+                e.preventDefault(); 
+                _showToast('Please fill in all fields!');
+              }
+              // If it IS valid, we do nothing and let the browser naturally open the user's email client!
+            }
+          },
+          [text('Send'.tr(context))],
+        ),
+        
+        if (showToast) 
+          div(classes: 'toast', [text(toastMessage)]),
+      ],
+    );
   }
 }

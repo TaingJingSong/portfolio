@@ -8,14 +8,12 @@ Map<String, String> en = {
   'front-end': 'front-end',
   ' and ': ' and ',
   'cross-platform developer.': 'cross-platform developer.',
-  'I craft seamless experiences across devices, blending design and logic to bring ideas to life—one pixel and line of code at a time.':
-      'I craft seamless experiences across devices, blending design and logic to bring ideas to life—one pixel and line of code at a time.',
+  'I craft seamless experiences across devices, blending design and logic to bring ideas to life—one pixel and line of code at a time.': 'I craft seamless experiences across devices, blending design and logic to bring ideas to life—one pixel and line of code at a time.',
   'Contact me!!': 'Contact me!!',
   'Currently working on ': 'Currently working on ',
   'Portfolio': 'Portfolio',
   'View all ~~>': 'View all ~~>',
-  'Coding is 10% writing code and 90% figuring out why it doesn’t work.':
-      'Coding is 10% writing code and 90% figuring out why it doesn’t work.',
+  'Coding is 10% writing code and 90% figuring out why it doesn’t work.': 'Coding is 10% writing code and 90% figuring out why it doesn’t work.',
   'projects': 'projects',
   'skills': 'skills',
   'Language': 'Language',
@@ -25,8 +23,7 @@ Map<String, String> en = {
   'Read more ~~>': 'Read more ~~>',
   'Message me here': 'Message me here',
   'Media': 'Media',
-  'Front-end and cross-platform developer.':
-      'Front-end and cross-platform developer.',
+  'Front-end and cross-platform developer.': 'Front-end and cross-platform developer.',
   '© Copyright {year}. Made by ChingSong': '© Copyright {year}. Made by ChingSong',
   'Hello, I\'m ChingSong': 'Hello, I\'m ChingSong',
   'I’m a Flutter mobile developer with a strong passion for building modern, user-friendly apps. I have experience creating real-world projects using Flutter, Dart, GetX, and Figma, and I enjoy turning ideas into clean, functional mobile applications.':
@@ -50,16 +47,10 @@ Map<String, String> en = {
   'Message': 'Message',
   'Send': 'Send',
   'contact-now': 'contact-now',
-  'Sometimes, my best ideas come while showering, not coding.':
-      'Sometimes, my best ideas come while showering, not coding.',
-  'I use GetX:  but secretly enjoy arguing about state management online.':
-      'I use GetX:  but secretly enjoy arguing about state management online.',
-  'I’ve designed UIs that looked better than the actual product 😅':
-      'I’ve designed UIs that looked better than the actual product 😅',
-  'I save my files like: final_final_v2_lastlast.dart':
-      'I save my files like: final_final_v2_lastlast.dart',
-  'I listen to random music while coding — it’s a vibe.':
-      'I listen to random music while coding — it’s a vibe.',
-  'My app crashes only when someone is watching me demo it.':
-      'My app crashes only when someone is watching me demo it.',
+  'Sometimes, my best ideas come while showering, not coding.': 'Sometimes, my best ideas come while showering, not coding.',
+  'I use GetX:  but secretly enjoy arguing about state management online.': 'I use GetX:  but secretly enjoy arguing about state management online.',
+  'I’ve designed UIs that looked better than the actual product 😅': 'I’ve designed UIs that looked better than the actual product 😅',
+  'I save my files like: final_final_v2_lastlast.dart': 'I save my files like: final_final_v2_lastlast.dart',
+  'I listen to random music while coding — it’s a vibe.': 'I listen to random music while coding — it’s a vibe.',
+  'My app crashes only when someone is watching me demo it.': 'My app crashes only when someone is watching me demo it.',
 };

@@ -1,104 +1,65 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import 'package:web/web.dart' as html;
-import 'dart:js_interop';
 
-import 'components/header.dart';
-import 'components/footer.dart';
-import 'pages/home_page.dart';
-import 'pages/work_page.dart';
-import 'pages/about_page.dart';
-import 'pages/contact_page.dart';
+import 'package:portfolio/components/header.dart';
+import 'package:portfolio/components/footer.dart';
+import 'package:portfolio/pages/home_page.dart';
+import 'package:portfolio/pages/work_page.dart';
+import 'package:portfolio/pages/about_page.dart';
+import 'package:portfolio/pages/contact_page.dart';
 
-@JS('dismissLoader')
-external void dismissLoader();
-
+@client
 class App extends StatefulComponent {
   const App({super.key});
 
   @override
-  State<App> createState() => _AppState();
+  State<App> createState() => _AppWidgetState();
+
+  @css
+  static List<StyleRule> get styles => [
+    css('.main', [
+      css('&').styles(
+        display: .flex,
+        flexDirection: .column,
+      ),
+    ]),
+  ];
 }
 
-class _AppState extends State<App> {
+class _AppWidgetState extends State<App> {
   String locale = 'en';
   int selectedMenu = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    // Load saved locale or default to 'en'
-    final savedLocale = html.window.localStorage.getItem('locale');
-    if (savedLocale != null) {
-      locale = savedLocale;
-    }
-    _updateBodyLang();
-
-    // Dismiss loading indicator once components boot up
-    try {
-      dismissLoader();
-    } catch (_) {
-      // Fallback if index.html hasn't exposed it
-    }
-  }
-
-  void _updateBodyLang() {
-    final body = html.document.body;
-    if (body != null) {
-      if (locale == 'km') {
-        body.classList.add('km-lang');
-      } else {
-        body.classList.remove('km-lang');
-      }
-    }
-  }
+  bool isDark = true;
 
   @override
   Component build(BuildContext context) {
     return AppState(
       locale: locale,
       selectedMenu: selectedMenu,
-      onLanguageChanged: (lang) {
-        setState(() {
-          locale = lang == 'KM' ? 'km' : 'en';
-          html.window.localStorage.setItem('locale', locale);
-          _updateBodyLang();
-        });
-      },
-      onMenuChanged: (index) {
-        setState(() {
-          selectedMenu = index;
-        });
-      },
-      child: div(classes: 'app-root', [
-        const Header(),
-        Router(
-          routes: [
-            Route(
-              path: '/',
-              title: 'Home - Taing ChingSong',
-              builder: (context, state) => const HomePage(),
-            ),
-            Route(
-              path: '/work',
-              title: 'Works - Taing ChingSong',
-              builder: (context, state) => const WorkPage(),
-            ),
-            Route(
-              path: '/about',
-              title: 'About - Taing ChingSong',
-              builder: (context, state) => const AboutPage(),
-            ),
-            Route(
-              path: '/contact',
-              title: 'Contact - Taing ChingSong',
-              builder: (context, state) => const ContactPage(),
-            ),
-          ],
-        ),
-        const Footer(),
-      ]),
+      isDark: isDark,
+      onLanguageChanged: (lang) => setState(() => locale = lang),
+      onMenuChanged: (index) => setState(() => selectedMenu = index),
+      onThemeChanged: (dark) => setState(() => isDark = dark),
+      child: Router(
+        routes: [
+          ShellRoute(
+            builder: (context, state, child) {
+              return div(classes: 'main', [
+                const Header(),
+                child,
+                const Footer(),
+              ]);
+            },
+            routes: [
+              Route(path: '/', title: 'Home - Taing ChingSong', builder: (context, state) => const HomePage()),
+              Route(path: '/work', title: 'Works - Taing ChingSong', builder: (context, state) => const WorkPage()),
+              Route(path: '/about', title: 'About - Taing ChingSong', builder: (context, state) => const AboutPage()),
+              Route(path: '/contact', title: 'Contact - Taing ChingSong', builder: (context, state) => const ContactPage()),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
@@ -106,24 +67,30 @@ class _AppState extends State<App> {
 class AppState extends InheritedComponent {
   final String locale;
   final int selectedMenu;
-  final Function(String) onLanguageChanged;
-  final Function(int) onMenuChanged;
+  final bool isDark;
+  final void Function(String) onLanguageChanged;
+  final void Function(int) onMenuChanged;
+  final void Function(bool) onThemeChanged;
 
   const AppState({
     required this.locale,
     required this.selectedMenu,
+    required this.isDark,
     required this.onLanguageChanged,
     required this.onMenuChanged,
+    required this.onThemeChanged,
     required super.child,
     super.key,
   });
 
-  static AppState of(BuildContext context) {
-    return context.dependOnInheritedComponentOfExactType<AppState>()!;
+  static AppState? of(BuildContext context) {
+    return context.dependOnInheritedComponentOfExactType<AppState>();
   }
 
   @override
   bool updateShouldNotify(AppState oldWidget) {
-    return oldWidget.locale != locale || oldWidget.selectedMenu != selectedMenu;
+    return oldWidget.locale != locale ||
+        oldWidget.selectedMenu != selectedMenu ||
+        oldWidget.isDark != isDark;
   }
 }

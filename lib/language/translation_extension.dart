@@ -1,12 +1,12 @@
 import 'package:jaspr/jaspr.dart';
-import 'en.dart';
-import 'km.dart';
-import '../app.dart';
+import 'package:portfolio/language/en.dart';
+import 'package:portfolio/language/km.dart';
+import 'package:portfolio/app.dart';
 
 extension TranslationExtension on String {
   String tr(BuildContext context) {
     final state = AppState.of(context);
-    final locale = state.locale;
+    final locale = state?.locale;
     final map = locale == 'km' ? km : en;
     return map[this] ?? this;
   }

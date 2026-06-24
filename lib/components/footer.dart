@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import '../language/translation_extension.dart';
 
+@client
 class Footer extends StatelessComponent {
   const Footer({super.key});
 

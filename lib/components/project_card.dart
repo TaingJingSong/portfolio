@@ -2,6 +2,7 @@ import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
 import 'package:portfolio/model/project_model.dart';
 
+@client
 class ProjectCard extends StatelessComponent {
   final ProjectModel project;
 
@@ -24,7 +25,7 @@ class ProjectCard extends StatelessComponent {
                 if (link.iconPath != null)
                   img(
                     src: link.iconPath!,
-                    width: 14,
+                    width: 32,
                     styles: Styles(margin: Margin.only(right: 6.px)),
                     alt: link.title,
                   )
