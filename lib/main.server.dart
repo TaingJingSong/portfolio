@@ -51,15 +51,10 @@ void main() {
       link(rel: 'stylesheet', href: 'styles/tools/color-picker-style.css'),
       link(rel: 'stylesheet', href: 'styles/tools/copy-style.css'),
       link(rel: 'stylesheet', href: 'styles/tools/base64-style.css'),
+      link(rel: 'stylesheet', href: 'styles/tools/no-page-found-style.css'),
       script(src: 'javascript/splash.js', defer: true),
     ],
     body: div([
-      div(classes: 'star-background', [
-        div(id: 'stars', []),
-        div(id: 'stars2', []),
-        div(id: 'stars3', []),
-      ]),
-
       // Loading Indicator Elements
       div(id: 'loading_indicator', [
         img(classes: 'indicator', src: '/assets/splash_logo.gif', alt: 'Loading'),
@@ -68,9 +63,6 @@ void main() {
         ]),
         span(classes: 'loading-label', [Component.text('Loading...')])
       ]),
-
-      // Mouse Cursor Element
-      div(id: 'cursor-glow', []),
 
       // Your Actual Application
       ProviderScope(child: const App()),

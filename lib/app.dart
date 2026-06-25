@@ -34,21 +34,44 @@ class _AppWidgetState extends State<App> {
       onLanguageChanged: (lang) => setState(() => locale = lang),
       onMenuChanged: (index) => setState(() => selectedMenu = index),
       onThemeChanged: (dark) => setState(() => isDark = dark),
-      child: Router(
-        routes: [
-          ShellRoute(
-            builder: (context, state, child) {
-              return div(classes: 'main', [
-                const Header(),
-                child,
-                const Footer(),
-              ]);
-            },
-            routes: AppRouter.routes,
-          ),
-        ],
-        // errorBuilder:(context, state) => ,
-      ),
+      child: div([
+        div(classes: 'star-background', [
+          div(id: 'stars', []),
+          div(id: 'stars2', []),
+          div(id: 'stars3', []),
+        ]),
+        div(id: 'cursor-glow', []),
+        Router(
+          routes: [
+            ShellRoute(
+              builder: (context, state, child) {
+                return div(classes: 'main', [
+                  const Header(),
+                  child,
+                  const Footer(),
+                ]);
+              },
+              routes: AppRouter.routes,
+            ),
+          ],
+          errorBuilder: (context, state) {
+            return div(classes: 'no-page-found-container', [
+              div(classes: 'error-card', [
+                h1(classes: 'error-title', [Component.text('404')]),
+                p(classes: 'error-subtitle', [Component.text('PAGE NOT FOUND'.tr(context))]),
+                p(classes: 'error-text', [
+                  Component.text('The coordinates you entered do not exist in the system grid.'.tr(context))
+                ]),
+                Link(
+                  to: '/',
+                  classes: 'error-btn',
+                  child: Component.text('Return to Base'.tr(context)),
+                ),
+              ]),
+            ]);
+          },
+        ),
+      ]),
     );
   }
 }
