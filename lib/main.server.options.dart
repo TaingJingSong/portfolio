@@ -10,9 +10,14 @@ import 'package:portfolio/components/header.dart' as _header;
 import 'package:portfolio/components/project_card.dart' as _project_card;
 import 'package:portfolio/components/quote_box.dart' as _quote_box;
 import 'package:portfolio/components/skill_card.dart' as _skill_card;
+import 'package:portfolio/pages/tools/color_picker_page.dart'
+    as _color_picker_page;
+import 'package:portfolio/pages/tools/json_formatter_page.dart'
+    as _json_formatter_page;
 import 'package:portfolio/pages/about_page.dart' as _about_page;
 import 'package:portfolio/pages/contact_page.dart' as _contact_page;
 import 'package:portfolio/pages/home_page.dart' as _home_page;
+import 'package:portfolio/pages/tool_page.dart' as _tool_page;
 import 'package:portfolio/pages/work_page.dart' as _work_page;
 import 'package:portfolio/app.dart' as _app;
 
@@ -52,6 +57,13 @@ ServerOptions get defaultServerOptions => ServerOptions(
       'contact_page',
     ),
     _home_page.HomePage: ClientTarget<_home_page.HomePage>('home_page'),
+    _tool_page.ToolsPage: ClientTarget<_tool_page.ToolsPage>('tool_page'),
+    _color_picker_page.ColorPickerPage:
+        ClientTarget<_color_picker_page.ColorPickerPage>('color_picker_page'),
+    _json_formatter_page.JsonFormatterPage:
+        ClientTarget<_json_formatter_page.JsonFormatterPage>(
+          'json_formatter_page',
+        ),
     _work_page.WorkPage: ClientTarget<_work_page.WorkPage>('work_page'),
   },
   styles: () => [..._app.App.styles],

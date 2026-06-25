@@ -1,7 +1,5 @@
-import 'package:jaspr/jaspr.dart';
-import 'package:portfolio/language/en.dart';
-import 'package:portfolio/language/km.dart';
 import 'package:portfolio/app.dart';
+import 'package:portfolio/register.dart';
 
 extension TranslationExtension on String {
   String tr(BuildContext context) {

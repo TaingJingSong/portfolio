@@ -1,13 +1,4 @@
-import 'package:jaspr/jaspr.dart';
-import 'package:jaspr/dom.dart';
-import 'package:jaspr_router/jaspr_router.dart';
-
-import 'package:portfolio/components/header.dart';
-import 'package:portfolio/components/footer.dart';
-import 'package:portfolio/pages/home_page.dart';
-import 'package:portfolio/pages/work_page.dart';
-import 'package:portfolio/pages/about_page.dart';
-import 'package:portfolio/pages/contact_page.dart';
+import 'package:portfolio/register.dart';
 
 @client
 class App extends StatefulComponent {
@@ -22,6 +13,8 @@ class App extends StatefulComponent {
       css('&').styles(
         display: .flex,
         flexDirection: .column,
+        position: .relative(),
+        zIndex: ZIndex(1),
       ),
     ]),
   ];
@@ -51,14 +44,10 @@ class _AppWidgetState extends State<App> {
                 const Footer(),
               ]);
             },
-            routes: [
-              Route(path: '/', title: 'Home - Taing ChingSong', builder: (context, state) => const HomePage()),
-              Route(path: '/work', title: 'Works - Taing ChingSong', builder: (context, state) => const WorkPage()),
-              Route(path: '/about', title: 'About - Taing ChingSong', builder: (context, state) => const AboutPage()),
-              Route(path: '/contact', title: 'Contact - Taing ChingSong', builder: (context, state) => const ContactPage()),
-            ],
+            routes: AppRouter.routes,
           ),
         ],
+        // errorBuilder:(context, state) => ,
       ),
     );
   }

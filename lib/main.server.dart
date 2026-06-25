@@ -1,5 +1,6 @@
 import 'package:jaspr/server.dart';
 import 'package:jaspr/dom.dart';
+import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'package:portfolio/app.dart';
 import 'package:portfolio/main.server.options.dart';
 
@@ -44,9 +45,20 @@ void main() {
       link(rel: 'stylesheet', href: 'styles/splash_style.css'),
       link(rel: 'stylesheet', href: 'styles/fancy-style.css'),
       link(rel: 'stylesheet', href: 'styles/eslam-style.css'),
+      link(rel: 'stylesheet', href: 'styles/star-style.css'),
+      link(rel: 'stylesheet', href: 'styles/tool-style.css'),
+      link(rel: 'stylesheet', href: 'styles/tools/json-formatter-style.css'),
+      link(rel: 'stylesheet', href: 'styles/tools/color-picker-style.css'),
+      link(rel: 'stylesheet', href: 'styles/tools/copy-style.css'),
       script(src: 'javascript/splash.js', defer: true),
     ],
     body: div([
+      div(classes: 'star-background', [
+        div(id: 'stars', []),
+        div(id: 'stars2', []),
+        div(id: 'stars3', []),
+      ]),
+
       // Loading Indicator Elements
       div(id: 'loading_indicator', [
         img(classes: 'indicator', src: '/assets/splash_logo.gif', alt: 'Loading'),
@@ -60,7 +72,7 @@ void main() {
       div(id: 'cursor-glow', []),
 
       // Your Actual Application
-      App(),
+      ProviderScope(child: const App()),
     ]),
   ));
 }

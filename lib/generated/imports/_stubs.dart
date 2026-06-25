@@ -6,6 +6,8 @@
 
 // ignore_for_file: directives_ordering, non_constant_identifier_names
 
+dynamic copyToClipboard;
+dynamic downloadFile;
 dynamic getStoredTheme;
 dynamic storeTheme;
 dynamic addBodyClass;

@@ -1,8 +1,18 @@
-/* From Uiverse.io by amir_6539 */ 
-.container {
-  height: 100%;
-  width: 100%;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+:root {
+  --color-bg: #282c33;
+  --color-primary: #c778dd;
+  --color-tertiary: #ffffff;
+  --color-secondary: #abb2bf;
+  --color-card-bg: rgba(255, 255, 255, 0.05);
+  --color-card-border: rgba(255, 255, 255, 0.11);
+}
+
+.star-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at bottom, var(--color-bg) 0%, var(--color-bg) 100%);
   overflow: hidden;
 }
 
@@ -2076,7 +2086,7 @@
 }
 #title span {
   background: -webkit-linear-gradient(white, #38495a);
-  -webkit-background-clip: text;
+  /* -webkit-background-clip: text; */
   -webkit-text-fill-color: transparent;
 }
 

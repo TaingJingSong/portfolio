@@ -13,9 +13,14 @@ import 'package:portfolio/components/project_card.dart'
 import 'package:portfolio/components/quote_box.dart' deferred as _quote_box;
 import 'package:portfolio/components/skill_card.dart' deferred as _skill_card;
 import 'package:portfolio/model/project_model.dart' as _project_model;
+import 'package:portfolio/pages/tools/color_picker_page.dart'
+    deferred as _color_picker_page;
+import 'package:portfolio/pages/tools/json_formatter_page.dart'
+    deferred as _json_formatter_page;
 import 'package:portfolio/pages/about_page.dart' deferred as _about_page;
 import 'package:portfolio/pages/contact_page.dart' deferred as _contact_page;
 import 'package:portfolio/pages/home_page.dart' deferred as _home_page;
+import 'package:portfolio/pages/tool_page.dart' deferred as _tool_page;
 import 'package:portfolio/pages/work_page.dart' deferred as _work_page;
 import 'package:portfolio/app.dart' deferred as _app;
 
@@ -76,6 +81,18 @@ ClientOptions get defaultClientOptions => ClientOptions(
     'home_page': ClientLoader(
       (p) => _home_page.HomePage(),
       loader: _home_page.loadLibrary,
+    ),
+    'tool_page': ClientLoader(
+      (p) => _tool_page.ToolsPage(),
+      loader: _tool_page.loadLibrary,
+    ),
+    'color_picker_page': ClientLoader(
+      (p) => _color_picker_page.ColorPickerPage(),
+      loader: _color_picker_page.loadLibrary,
+    ),
+    'json_formatter_page': ClientLoader(
+      (p) => _json_formatter_page.JsonFormatterPage(),
+      loader: _json_formatter_page.loadLibrary,
     ),
     'work_page': ClientLoader(
       (p) => _work_page.WorkPage(),

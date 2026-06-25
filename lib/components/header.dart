@@ -1,8 +1,5 @@
-import 'package:jaspr/jaspr.dart';
-import 'package:jaspr/dom.dart';
-import 'package:jaspr_router/jaspr_router.dart';
 import 'package:portfolio/app.dart';
-import 'package:portfolio/language/translation_extension.dart';
+import 'package:portfolio/register.dart';
 
 @Import.onWeb('package:portfolio/utils/theme_utils.dart', show: [
   #getStoredTheme,
@@ -36,12 +33,11 @@ class _HeaderState extends State<Header> {
         });
       }
     } catch (_) {
-      // server-side: browser APIs not available, skip
+      dialog([Component.text('Server-side: browser APIs not available, skip')]);
     }
   }
 
   void toggleTheme(AppState? state) {
-    print(state);
     if (state == null) return;
     final goingLight = state.isDark;
     state.onThemeChanged(!goingLight);
@@ -76,10 +72,11 @@ class _HeaderState extends State<Header> {
       
       // Desktop Nav Menu
       nav(classes: 'nav-menu', [
-        _buildNavLink(context, '/', 'home', currentRoute == '/'),
-        _buildNavLink(context, '/work', 'works', currentRoute == '/work'),
-        _buildNavLink(context, '/about', 'about-me', currentRoute == '/about'),
-        _buildNavLink(context, '/contact', 'contacts', currentRoute == '/contact'),
+        _buildNavLink(context, AppRoutes.home, 'home', currentRoute.startsWith(AppRoutes.home)),
+        _buildNavLink(context, AppRoutes.work, 'works', currentRoute.startsWith(AppRoutes.work)),
+        _buildNavLink(context, AppRoutes.about, 'about-me', currentRoute.startsWith(AppRoutes.about)),
+        _buildNavLink(context, AppRoutes.contact, 'contacts', currentRoute.startsWith(AppRoutes.contact)),
+        _buildNavLink(context, AppRoutes.tool, 'tool', currentRoute.startsWith(AppRoutes.tool)),
 
         // Theme Toggle Button
         button(

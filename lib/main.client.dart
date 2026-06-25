@@ -1,6 +1,8 @@
 library;
 
 import 'package:jaspr/client.dart';
+import 'package:jaspr_riverpod/jaspr_riverpod.dart';
+import 'package:portfolio/app.dart';
 import 'package:portfolio/main.client.options.dart';
 
 void main() {
@@ -8,6 +10,6 @@ void main() {
     options: defaultClientOptions,
   );
   runApp(
-    const ClientApp(),
+    ProviderScope(child: const App()),
   );
 }

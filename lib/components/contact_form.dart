@@ -130,11 +130,11 @@ class _ContactFormState extends State<ContactForm> {
               // If it IS valid, we do nothing and let the browser naturally open the user's email client!
             }
           },
-          [text('Send'.tr(context))],
+          [Component.text('Send'.tr(context))],
         ),
         
         if (showToast) 
-          div(classes: 'toast', [text(toastMessage)]),
+          div(classes: 'toast', [Component.text(toastMessage)]),
       ],
     );
   }
