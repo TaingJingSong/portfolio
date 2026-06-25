@@ -280,7 +280,7 @@ class ColorPickerPage extends StatelessComponent {
           label(classes: 'tool-editor-label', [Component.text('CSS Output')]),
           div(classes: 'color-css-chip', [
             span(classes: 'color-css-value', [Component.text('background: $css;')]),
-            span(classes: 'cp-copy-btn', [Component.text('copy')]),
+            AppCopy(value: 'background: $css;'),
           ]),
         ]),
       ]),

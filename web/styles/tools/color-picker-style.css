@@ -102,6 +102,10 @@
   background: rgba(255, 255, 255, 0.02);
 }
 
+.color-css-chip .copy {
+  margin-left: auto;
+}
+
 .color-css-label {
   font-size: 11px;
   color: var(--color-primary);
