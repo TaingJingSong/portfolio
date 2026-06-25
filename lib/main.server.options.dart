@@ -11,7 +11,6 @@ import 'package:portfolio/components/footer.dart' as _footer;
 import 'package:portfolio/components/header.dart' as _header;
 import 'package:portfolio/components/project_card.dart' as _project_card;
 import 'package:portfolio/components/quote_box.dart' as _quote_box;
-import 'package:portfolio/components/skill_card.dart' as _skill_card;
 import 'package:portfolio/pages/tools/base64_page.dart' as _base64_page;
 import 'package:portfolio/pages/tools/color_picker_page.dart'
     as _color_picker_page;
@@ -55,10 +54,6 @@ ServerOptions get defaultServerOptions => ServerOptions(
       params: __project_cardProjectCard,
     ),
     _quote_box.QuoteBox: ClientTarget<_quote_box.QuoteBox>('quote_box'),
-    _skill_card.SkillCard: ClientTarget<_skill_card.SkillCard>(
-      'skill_card',
-      params: __skill_cardSkillCard,
-    ),
     _about_page.AboutPage: ClientTarget<_about_page.AboutPage>('about_page'),
     _contact_page.ContactPage: ClientTarget<_contact_page.ContactPage>(
       'contact_page',
@@ -89,8 +84,4 @@ Map<String, Object?> __tab_barTabBar(_tab_bar.TabBar c) => {
 };
 Map<String, Object?> __project_cardProjectCard(_project_card.ProjectCard c) => {
   'project': c.project.encode(),
-};
-Map<String, Object?> __skill_cardSkillCard(_skill_card.SkillCard c) => {
-  'title': c.title,
-  'skills': c.skills,
 };

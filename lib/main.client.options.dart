@@ -13,7 +13,6 @@ import 'package:portfolio/components/header.dart' deferred as _header;
 import 'package:portfolio/components/project_card.dart'
     deferred as _project_card;
 import 'package:portfolio/components/quote_box.dart' deferred as _quote_box;
-import 'package:portfolio/components/skill_card.dart' deferred as _skill_card;
 import 'package:portfolio/model/project_model.dart' as _project_model;
 import 'package:portfolio/pages/tools/base64_page.dart'
     deferred as _base64_page;
@@ -73,13 +72,6 @@ ClientOptions get defaultClientOptions => ClientOptions(
     'quote_box': ClientLoader(
       (p) => _quote_box.QuoteBox(),
       loader: _quote_box.loadLibrary,
-    ),
-    'skill_card': ClientLoader(
-      (p) => _skill_card.SkillCard(
-        title: p['title'] as String,
-        skills: (p['skills'] as List<Object?>).cast<String>(),
-      ),
-      loader: _skill_card.loadLibrary,
     ),
     'about_page': ClientLoader(
       (p) => _about_page.AboutPage(),

@@ -692,14 +692,135 @@ body.km-lang .about-text {
   gap: 8px;
 }
 
+.skill-badge-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
 .skill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-size: 12px;
   font-weight: 500;
   color: var(--color-secondary);
-  background-color: rgba(255, 255, 255, 0.05); /* Slight background for contrast */
-  padding: 4px 8px;
-  /* border-radius: 4px; */
-  word-break: break-word; /* Prevents long words from blowing out the container */
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  user-select: none;
+}
+
+/* Subtle background progress bar filling the badge based on level */
+.skill-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--skill-level, 0%);
+  background-color: var(--color-primary);
+  opacity: 0.08; /* Very subtle background fill */
+  z-index: 0;
+  transition: width 1s ease-in-out;
+}
+
+.skill-name,
+.skill-level-text {
+  position: relative;
+  z-index: 1;
+}
+
+.skill-level-text {
+  font-size: 10px;
+  opacity: 0.6;
+  font-family: monospace;
+}
+
+/* Glow and slide animation on hover */
+.skill-badge-wrapper:hover .skill-badge {
+  color: var(--color-tertiary);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(199, 120, 221, 0.25);
+  transform: translateY(-2px);
+}
+
+.skill-badge-wrapper:hover .skill-badge::before {
+  opacity: 0.15; /* More visible on hover */
+}
+
+/* Tooltip container */
+.skill-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  width: 200px;
+  background: rgba(40, 44, 51, 0.95);
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 100;
+  transition: opacity 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+              visibility 0.25s cubic-bezier(0.25, 0.8, 0.25, 1),
+              transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Tooltip arrow */
+.skill-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--color-primary) transparent transparent transparent;
+}
+
+/* Tooltip text and layout */
+.skill-tooltip-desc {
+  font-size: 11px;
+  color: var(--color-secondary);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  font-family: inherit;
+  white-space: normal;
+  text-align: left;
+}
+
+/* Tooltip progress bar */
+.skill-progress-bar {
+  height: 4px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 2px;
+  width: 0%; /* Initial state for animation */
+  transition: width 0.5s ease-out;
+}
+
+/* Show tooltip and animate progress on hover */
+.skill-badge-wrapper:hover .skill-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }
 
 /* --- Optimized Animation --- */

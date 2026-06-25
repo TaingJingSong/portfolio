@@ -16,9 +16,6 @@ class HomePage extends StatelessComponent {
   @override
   Component build(BuildContext context) {
     return div(classes: 'container gap-60', [
-      div(id: 'stars', []),
-      div(id: 'stars2', []),
-      div(id: 'stars3', []),
       // 1. Hero Section
       section(classes: 'glass-wrap hero-flex', [
         div(classes: 'hero-left', [

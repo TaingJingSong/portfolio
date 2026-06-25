@@ -14,6 +14,11 @@
   pointer-events: none;
   background: radial-gradient(ellipse at bottom, var(--color-bg) 0%, var(--color-bg) 100%);
   overflow: hidden;
+  transition: opacity 0.5s ease;
+}
+
+body.light .star-background {
+  opacity: 0;
 }
 
 #stars {
