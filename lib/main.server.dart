@@ -50,6 +50,7 @@ void main() {
       link(rel: 'stylesheet', href: 'styles/tools/json-formatter-style.css'),
       link(rel: 'stylesheet', href: 'styles/tools/color-picker-style.css'),
       link(rel: 'stylesheet', href: 'styles/tools/copy-style.css'),
+      link(rel: 'stylesheet', href: 'styles/tools/base64-style.css'),
       script(src: 'javascript/splash.js', defer: true),
     ],
     body: div([

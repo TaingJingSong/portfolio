@@ -332,6 +332,17 @@
 
 .cp-swatch-use:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
+.cp-swatch-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cp-swatch-actions .copy {
+  --button-diameter: 26px;
+  --button-border-radius: 4px;
+}
+
 /* Gradient */
 .cp-gradient-preview {
   height: 160px;

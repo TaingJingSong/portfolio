@@ -192,11 +192,14 @@ class ColorPickerPage extends StatelessComponent {
           div(classes: 'cp-palette-swatch', [
             div(classes: 'cp-swatch-color', styles: Styles(raw: {'background': hex}), []),
             p(classes: 'cp-swatch-hex', [Component.text(hex.toUpperCase())]),
-            button(
-              classes: 'cp-swatch-use',
-              onClick: () => notifier.fromHex(hex),
-              [Component.text('Use')],
-            ),
+            div(classes: 'cp-swatch-actions', [
+              button(
+                classes: 'cp-swatch-use',
+                onClick: () => notifier.fromHex(hex),
+                [Component.text('Use')],
+              ),
+              AppCopy(value: hex.toUpperCase()),
+            ]),
           ]),
       ]),
     ]);

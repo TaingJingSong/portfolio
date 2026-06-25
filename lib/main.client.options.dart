@@ -15,6 +15,8 @@ import 'package:portfolio/components/project_card.dart'
 import 'package:portfolio/components/quote_box.dart' deferred as _quote_box;
 import 'package:portfolio/components/skill_card.dart' deferred as _skill_card;
 import 'package:portfolio/model/project_model.dart' as _project_model;
+import 'package:portfolio/pages/tools/base64_page.dart'
+    deferred as _base64_page;
 import 'package:portfolio/pages/tools/color_picker_page.dart'
     deferred as _color_picker_page;
 import 'package:portfolio/pages/tools/json_formatter_page.dart'
@@ -94,6 +96,10 @@ ClientOptions get defaultClientOptions => ClientOptions(
     'tool_page': ClientLoader(
       (p) => _tool_page.ToolsPage(),
       loader: _tool_page.loadLibrary,
+    ),
+    'base64_page': ClientLoader(
+      (p) => _base64_page.Base64Page(),
+      loader: _base64_page.loadLibrary,
     ),
     'color_picker_page': ClientLoader(
       (p) => _color_picker_page.ColorPickerPage(),

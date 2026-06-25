@@ -12,6 +12,7 @@ import 'package:portfolio/components/header.dart' as _header;
 import 'package:portfolio/components/project_card.dart' as _project_card;
 import 'package:portfolio/components/quote_box.dart' as _quote_box;
 import 'package:portfolio/components/skill_card.dart' as _skill_card;
+import 'package:portfolio/pages/tools/base64_page.dart' as _base64_page;
 import 'package:portfolio/pages/tools/color_picker_page.dart'
     as _color_picker_page;
 import 'package:portfolio/pages/tools/json_formatter_page.dart'
@@ -64,6 +65,9 @@ ServerOptions get defaultServerOptions => ServerOptions(
     ),
     _home_page.HomePage: ClientTarget<_home_page.HomePage>('home_page'),
     _tool_page.ToolsPage: ClientTarget<_tool_page.ToolsPage>('tool_page'),
+    _base64_page.Base64Page: ClientTarget<_base64_page.Base64Page>(
+      'base64_page',
+    ),
     _color_picker_page.ColorPickerPage:
         ClientTarget<_color_picker_page.ColorPickerPage>('color_picker_page'),
     _json_formatter_page.JsonFormatterPage:

@@ -7,4 +7,5 @@ abstract class AppRoutes {
 
   static const jsonFormatter = 'json-formatter';
   static const colorPicker = 'color-picker';
+  static const base64 = 'base64';
 }

@@ -24,7 +24,7 @@ class ToolsPage extends StatelessComponent {
           div(classes: 'section-header', [
             h2(classes: 'section-title', [
               span([Component.text('#')]),
-              Component.text(category),
+              AppText(text: category.slashStyle),
             ]),
             div(classes: 'section-line', []),
           ]),

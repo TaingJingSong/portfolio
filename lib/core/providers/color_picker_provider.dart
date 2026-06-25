@@ -80,13 +80,43 @@ class ColorPickerNotifier extends Notifier<ColorPickerState> {
 
   void fromHex(String hex) {
     try {
-      final clean = hex.startsWith('#') ? hex.substring(1) : hex;
-      if (clean.length != 6) throw Exception('Invalid hex');
-      final r = int.parse(clean.substring(0, 2), radix: 16);
-      final g = int.parse(clean.substring(2, 4), radix: 16);
-      final b = int.parse(clean.substring(4, 6), radix: 16);
+      var clean = hex.trim();
+      if (clean.startsWith('#')) {
+        clean = clean.substring(1);
+      }
+      
+      // If it contains non-hex characters, flag as error
+      final hexRegex = RegExp(r'^[0-9a-fA-F]*$');
+      if (!hexRegex.hasMatch(clean)) {
+        state = state.copyWith(error: 'Invalid characters in hex');
+        return;
+      }
+
+      if (clean.length != 3 && clean.length != 6) {
+        // While user is typing partial hex, update raw text without breaking layout or showing validation errors
+        state = state.copyWith(hex: hex, error: null);
+        return;
+      }
+
+      int r, g, b;
+      String fullHex;
+      if (clean.length == 3) {
+        final rChar = clean.substring(0, 1);
+        final gChar = clean.substring(1, 2);
+        final bChar = clean.substring(2, 3);
+        r = int.parse(rChar + rChar, radix: 16);
+        g = int.parse(gChar + gChar, radix: 16);
+        b = int.parse(bChar + bChar, radix: 16);
+        fullHex = '#$rChar$rChar$gChar$gChar$bChar$bChar'.toLowerCase();
+      } else {
+        r = int.parse(clean.substring(0, 2), radix: 16);
+        g = int.parse(clean.substring(2, 4), radix: 16);
+        b = int.parse(clean.substring(4, 6), radix: 16);
+        fullHex = '#${clean.toLowerCase()}';
+      }
+
       final hsl = _rgbToHsl(r, g, b);
-      _updateColor('#$clean', r, g, b, hsl[0], hsl[1], hsl[2]);
+      _updateColor(fullHex, r, g, b, hsl[0], hsl[1], hsl[2]);
     } catch (_) {
       state = state.copyWith(error: 'Invalid hex color');
     }
@@ -234,9 +264,13 @@ class ColorPickerNotifier extends Notifier<ColorPickerState> {
     final d = mx - mn;
     final s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
     double h;
-    if (mx == rf) h = (gf - bf) / d + (gf < bf ? 6 : 0);
-    else if (mx == gf) h = (bf - rf) / d + 2;
-    else h = (rf - gf) / d + 4;
+    if (mx == rf) {
+      h = (gf - bf) / d + (gf < bf ? 6 : 0);
+    } else if (mx == gf) {
+      h = (bf - rf) / d + 2;
+    } else {
+      h = (rf - gf) / d + 4;
+    }
     return [(h / 6 * 360).roundToDouble(), (s * 100).roundToDouble(), (l * 100).roundToDouble()];
   }
 
