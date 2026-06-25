@@ -1,5 +1,6 @@
 import 'package:jaspr_riverpod/jaspr_riverpod.dart';
 import 'dart:convert';
+import 'dart:math';
 
 enum Base64Mode { encode, decode }
 enum Base64Variant { standard, urlSafe }
@@ -144,6 +145,13 @@ class Base64Notifier extends Notifier<Base64State> {
         input = input.replaceAll(RegExp(r'\s'), '');
       }
 
+      // If input is a full Data URL (e.g. data:image/png;base64,iVBOR...), strip prefix
+      final dataUrlRegex = RegExp(r'^data:[^;]+;base64,', caseSensitive: false);
+      final hasDataUrlPrefix = dataUrlRegex.hasMatch(input);
+      if (hasDataUrlPrefix) {
+        input = input.replaceFirst(dataUrlRegex, '');
+      }
+
       // Detect URL-safe variant
       final isUrlSafe = input.contains('-') || input.contains('_');
 
@@ -152,16 +160,30 @@ class Base64Notifier extends Notifier<Base64State> {
         bytes = base64Url.decode(base64Url.normalize(input));
       } else {
         // Pad if needed
-        while (input.length % 4 != 0) input += '=';
-        bytes = base64.decode(input);
+        var padded = input;
+        while (padded.length % 4 != 0) {
+          padded += '=';
+        }
+        bytes = base64.decode(padded);
       }
 
-      final result = utf8.decode(bytes, allowMalformed: true);
-
-      // Check if it's an image data URL
-      final isImage = result.startsWith('data:image/');
-      final originalInput = state.input.replaceAll(RegExp(r'\s'), '');
-      final dataUrl = isImage ? result : (originalInput.startsWith('data:image/') ? originalInput : null);
+      // Check if the decoded payload is binary or text, and if it's an image
+      final mimeType = _detectImageMimeType(bytes);
+      final isImage = mimeType != null;
+      
+      String result;
+      String? dataUrl;
+      
+      if (isImage) {
+        result = '[Binary Image Data - $mimeType]';
+        dataUrl = 'data:$mimeType;base64,${base64.encode(bytes)}';
+      } else {
+        result = utf8.decode(bytes, allowMalformed: true);
+        // Fallback: check if the text itself contains a data URL (like SVG or inline images)
+        if (result.startsWith('data:image/')) {
+          dataUrl = result;
+        }
+      }
 
       state = state.copyWith(
         output: result,
@@ -176,6 +198,43 @@ class Base64Notifier extends Notifier<Base64State> {
         clearImage: true,
       );
     }
+  }
+
+  String? _detectImageMimeType(List<int> bytes) {
+    if (bytes.length < 4) return null;
+    
+    // PNG: 89 50 4E 47
+    if (bytes[0] == 137 && bytes[1] == 80 && bytes[2] == 78 && bytes[3] == 71) {
+      return 'image/png';
+    }
+    
+    // JPEG: FF D8 FF
+    if (bytes[0] == 255 && bytes[1] == 216 && bytes[2] == 255) {
+      return 'image/jpeg';
+    }
+    
+    // GIF: GIF8 (47 49 46 38)
+    if (bytes[0] == 71 && bytes[1] == 73 && bytes[2] == 70 && bytes[3] == 56) {
+      return 'image/gif';
+    }
+    
+    // WEBP: RIFF (52 49 46 46) ... WEBP (57 45 42 50)
+    if (bytes[0] == 82 && bytes[1] == 73 && bytes[2] == 70 && bytes[3] == 70) {
+      if (bytes.length >= 12 &&
+          bytes[8] == 87 && bytes[9] == 69 && bytes[10] == 66 && bytes[11] == 80) {
+        return 'image/webp';
+      }
+    }
+    
+    // SVG: Check if it looks like SVG (XML markup)
+    try {
+      final lead = utf8.decode(bytes.take(min(bytes.length, 100)).toList()).trim().toLowerCase();
+      if (lead.startsWith('<svg') || lead.startsWith('?xml') && lead.contains('<svg')) {
+        return 'image/svg+xml';
+      }
+    } catch (_) {}
+
+    return null;
   }
 
   void swapInputOutput() {
@@ -196,8 +255,19 @@ class Base64Notifier extends Notifier<Base64State> {
 
   bool isValidBase64(String input) {
     try {
-      final clean = input.replaceAll(RegExp(r'\s'), '');
-      base64.decode(base64.normalize(clean));
+      var clean = input.replaceAll(RegExp(r'\s'), '');
+      
+      // Strip prefix if present
+      final dataUrlRegex = RegExp(r'^data:[^;]+;base64,', caseSensitive: false);
+      if (dataUrlRegex.hasMatch(clean)) {
+        clean = clean.replaceFirst(dataUrlRegex, '');
+      }
+
+      if (clean.contains('-') || clean.contains('_')) {
+        base64Url.decode(base64Url.normalize(clean));
+      } else {
+        base64.decode(base64.normalize(clean));
+      }
       return true;
     } catch (_) {
       return false;
@@ -217,7 +287,7 @@ class Base64Notifier extends Notifier<Base64State> {
     final ratio = state.inputBytes > 0
         ? (state.outputBytes / state.inputBytes * 100).toStringAsFixed(1)
         : '0';
-    return 'Input: ${state.inputBytes} bytes  →  Output: ${state.outputBytes} ${state.mode == Base64Mode.encode ? 'chars' : 'bytes'}  (${ratio}%)';
+    return 'Input: ${state.inputBytes} bytes  →  Output: ${state.outputBytes} ${state.mode == Base64Mode.encode ? 'chars' : 'bytes'}  ($ratio%)';
   }
 
   bool get inputIsValidBase64 =>

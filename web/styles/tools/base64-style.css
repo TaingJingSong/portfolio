@@ -201,3 +201,30 @@
   white-space: pre-line;
   font-family: monospace;
 }
+
+/* Floating AppCopy positioning at bottom right inside textarea container */
+.tool-editor-col > .copy {
+  position: absolute;
+  bottom: 16px;
+  right: 28px; /* Safe space to avoid overlapping the textarea resize drag handle */
+  z-index: 5;
+  opacity: 0.35;
+  transform: scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s ease;
+}
+
+/* Make copy button glow/grow on hover or textarea focus */
+.tool-editor-col:hover > .copy,
+.tool-editor-col textarea:focus ~ .copy,
+.tool-editor-col > .copy:focus-visible,
+.tool-editor-col > .copy:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Modern CSS :has() selector to highlight label on textarea focus */
+.tool-editor-col:has(textarea:focus) .tool-editor-label {
+  color: var(--color-primary);
+  text-shadow: 0 0 8px rgba(199, 120, 221, 0.25);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}

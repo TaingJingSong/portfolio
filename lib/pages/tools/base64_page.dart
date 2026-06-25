@@ -70,11 +70,12 @@ class Base64Page extends StatelessComponent {
           if (state.mode == Base64Mode.encode)
             label(classes: 'tool-checkbox-label', [
               input(
+                classes: 'input',
                 type: InputType.checkbox,
                 checked: state.wrapLines,
                 onChange: (_) => notifier.toggleWrapLines(),
-                // [],
               ),
+              span(classes: 'custom-checkbox', []),
               Component.text('Wrap at 76 chars (MIME)'),
             ]),
 
@@ -82,22 +83,24 @@ class Base64Page extends StatelessComponent {
           if (state.mode == Base64Mode.decode)
             label(classes: 'tool-checkbox-label', [
               input(
+                classes: 'input',
                 type: InputType.checkbox,
                 checked: state.stripWhitespace,
                 onChange: (_) => notifier.toggleStripWhitespace(),
-                // [],
               ),
+              span(classes: 'custom-checkbox', []),
               Component.text('Strip whitespace before decoding'),
             ]),
 
           // Auto process
           label(classes: 'tool-checkbox-label', [
             input(
+              classes: 'input',
               type: InputType.checkbox,
               checked: state.autoProcess,
               onChange: (_) => notifier.toggleAutoProcess(),
-              // [],
             ),
+            span(classes: 'custom-checkbox', []),
             Component.text('Auto process'),
           ]),
 
@@ -130,39 +133,47 @@ class Base64Page extends StatelessComponent {
         // ── Editor ───────────────────────────────────────────
         div(classes: 'tool-editor-wrap', [
           // Input
-          div(classes: 'tool-editor-col', [
-            div(classes: 'b64-editor-header', [
+          div(classes: 'tool-editor-col tool-relative', [
+            div(classes: 'tool-editor-header', [
               p(classes: 'tool-editor-label', [
                 Component.text(state.mode == Base64Mode.encode ? 'Plain Text' : 'Base64 Input'),
               ]),
-              span(classes: 'b64-byte-count', [
-                Component.text('${state.inputBytes} bytes'),
+              div(classes: 'tool-header-actions', [
+                span(classes: 'tool-stats', [
+                  Component.text('${state.inputBytes} bytes'),
+                ]),
               ]),
             ]),
             textarea(
               classes: 'tool-textarea${state.error != null ? ' tool-textarea-error' : ''}',
-              // value: state.input,
+              placeholder: 'Type or paste content here...',
+              autofocus: true,
               onInput: (v) => notifier.setInput(v),
-              [],
+              [Component.text(state.input)],
             ),
+            if (state.input.isNotEmpty) AppCopy(value: state.input),
           ]),
 
           // Output
-          div(classes: 'tool-editor-col', [
-            div(classes: 'b64-editor-header', [
+          div(classes: 'tool-editor-col tool-relative', [
+            div(classes: 'tool-editor-header', [
               p(classes: 'tool-editor-label', [
                 Component.text(state.mode == Base64Mode.encode ? 'Base64 Output' : 'Decoded Text'),
               ]),
-              span(classes: 'b64-byte-count', [
-                Component.text('${state.outputBytes} ${state.mode == Base64Mode.encode ? 'chars' : 'bytes'}'),
+              div(classes: 'tool-header-actions', [
+                span(classes: 'tool-stats', [
+                  Component.text('${state.outputBytes} ${state.mode == Base64Mode.encode ? 'chars' : 'bytes'}'),
+                ]),
               ]),
             ]),
             textarea(
               classes: 'tool-textarea',
+              placeholder: 'Output will appear here...',
               readonly: true,
-              // value: state.error != null ? '' : state.output,
-              [],
+              [Component.text(state.error != null ? '' : state.output)],
             ),
+            if (state.output.isNotEmpty && state.error == null)
+              AppCopy(value: state.output),
           ]),
         ]),
 
@@ -176,13 +187,6 @@ class Base64Page extends StatelessComponent {
         if (state.input.isNotEmpty && state.error == null)
           div(classes: 'b64-stats-bar', [
             span(classes: 'b64-stats-text', [Component.text(notifier.stats)]),
-            if (state.output.isNotEmpty) ...[
-              button(
-                classes: 'cp-copy-btn',
-                onClick: () {},
-                [Component.text('Copy output')],
-              ),
-            ],
           ]),
 
         // ── Image preview ────────────────────────────────────
