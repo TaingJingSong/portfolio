@@ -5,6 +5,8 @@
 // Generated with jaspr_builder
 
 import 'package:jaspr/server.dart';
+import 'package:jaspr_content/components/_internal/tab_bar.dart' as _tab_bar;
+import 'package:jaspr_content/components/tabs.dart' as _tabs;
 import 'package:portfolio/components/footer.dart' as _footer;
 import 'package:portfolio/components/header.dart' as _header;
 import 'package:portfolio/components/project_card.dart' as _project_card;
@@ -40,6 +42,10 @@ import 'package:portfolio/app.dart' as _app;
 ServerOptions get defaultServerOptions => ServerOptions(
   clientId: 'main.client.dart.js',
   clients: {
+    _tab_bar.TabBar: ClientTarget<_tab_bar.TabBar>(
+      'jaspr_content:tab_bar',
+      params: __tab_barTabBar,
+    ),
     _app.App: ClientTarget<_app.App>('app'),
     _footer.Footer: ClientTarget<_footer.Footer>('footer'),
     _header.Header: ClientTarget<_header.Header>('header'),
@@ -66,9 +72,17 @@ ServerOptions get defaultServerOptions => ServerOptions(
         ),
     _work_page.WorkPage: ClientTarget<_work_page.WorkPage>('work_page'),
   },
-  styles: () => [..._app.App.styles],
+  styles: () => [
+    ..._tabs.Tabs.styles,
+    ..._tab_bar.TabBar.styles,
+    ..._app.App.styles,
+  ],
 );
 
+Map<String, Object?> __tab_barTabBar(_tab_bar.TabBar c) => {
+  'initialValue': c.initialValue,
+  'items': c.items,
+};
 Map<String, Object?> __project_cardProjectCard(_project_card.ProjectCard c) => {
   'project': c.project.encode(),
 };

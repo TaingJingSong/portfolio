@@ -15,7 +15,7 @@ class ToolsPage extends StatelessComponent {
           Component.text('tools'),
         ]),
         p(classes: 'hero-subtitle', [
-          Component.text('A collection of dev tools built for everyday use.'),
+          Component.text('A collection of dev tools built for everyday use.'.slashStyle),
         ]),
       ]),
 

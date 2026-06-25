@@ -69,14 +69,14 @@ class _HeaderState extends State<Header> {
         img(src: '/assets/icon/svg/Profile.svg', classes: 'logo-icon', alt: 'Logo'),
         Component.text('Taing ChingSong'.tr(context)),
       ]),
-      
+
       // Desktop Nav Menu
       nav(classes: 'nav-menu', [
-        _buildNavLink(context, AppRoutes.home, 'home', currentRoute.startsWith(AppRoutes.home)),
-        _buildNavLink(context, AppRoutes.work, 'works', currentRoute.startsWith(AppRoutes.work)),
-        _buildNavLink(context, AppRoutes.about, 'about-me', currentRoute.startsWith(AppRoutes.about)),
-        _buildNavLink(context, AppRoutes.contact, 'contacts', currentRoute.startsWith(AppRoutes.contact)),
-        _buildNavLink(context, AppRoutes.tool, 'tool', currentRoute.startsWith(AppRoutes.tool)),
+        _buildNavLink(context, AppRoutes.home, 'home', currentRoute == AppRoutes.home),
+        _buildNavLink(context, AppRoutes.work, 'works', currentRoute == AppRoutes.work),
+        _buildNavLink(context, AppRoutes.about, 'about-me', currentRoute == AppRoutes.about),
+        _buildNavLink(context, AppRoutes.contact, 'contacts', currentRoute == AppRoutes.contact),
+        _buildNavLink(context, AppRoutes.tool, 'tool', currentRoute == AppRoutes.tool),
 
         // Theme Toggle Button
         button(

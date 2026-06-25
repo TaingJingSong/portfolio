@@ -6,6 +6,8 @@
 
 import 'package:jaspr/client.dart';
 
+import 'package:jaspr_content/components/_internal/tab_bar.dart'
+    deferred as _tab_bar;
 import 'package:portfolio/components/footer.dart' deferred as _footer;
 import 'package:portfolio/components/header.dart' deferred as _header;
 import 'package:portfolio/components/project_card.dart'
@@ -42,6 +44,13 @@ import 'package:portfolio/app.dart' deferred as _app;
 /// ```
 ClientOptions get defaultClientOptions => ClientOptions(
   clients: {
+    'jaspr_content:tab_bar': ClientLoader(
+      (p) => _tab_bar.TabBar(
+        initialValue: p['initialValue'] as String,
+        items: (p['items'] as Map<String, Object?>).cast<String, String>(),
+      ),
+      loader: _tab_bar.loadLibrary,
+    ),
     'app': ClientLoader((p) => _app.App(), loader: _app.loadLibrary),
     'footer': ClientLoader(
       (p) => _footer.Footer(),

@@ -1143,3 +1143,56 @@ body.km-lang .footer-copyright {
     max-width: 100%;
   }
 }
+
+/* Custom checkbox styling */
+input[type="checkbox"],
+.input[type="checkbox"] {
+  display: none;
+}
+
+/* Style for the custom checkbox */
+.custom-checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-secondary, #333);
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--color-card-bg, transparent);
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  vertical-align: middle;
+}
+
+/* Hover style */
+.tool-checkbox-label:hover .custom-checkbox {
+  border-color: var(--color-primary, #555);
+}
+
+/* Style for the custom checkmark */
+.custom-checkbox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  width: 10px;
+  height: 10px;
+  background-color: var(--color-primary, #333);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Show the checkmark when checkbox is checked */
+input[type="checkbox"]:checked + .custom-checkbox::after,
+.input[type="checkbox"]:checked + .custom-checkbox::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Checked custom checkbox state */
+input[type="checkbox"]:checked + .custom-checkbox,
+.input[type="checkbox"]:checked + .custom-checkbox {
+  border-color: var(--color-primary, #333);
+}

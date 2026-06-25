@@ -24,28 +24,34 @@ class JsonFormatterPage extends StatelessComponent {
         div(classes: 'tool-controls', [
           label(classes: 'tool-checkbox-label', [
             input(
+              classes: 'input',
               type: InputType.checkbox,
               checked: state.autoFormat,
               onChange: (_) => notifier.toggleAutoFormat(),
             ),
+            span(classes: 'custom-checkbox', []),
             AppText(text: 'Auto-format'),
           ]),
           
           label(classes: 'tool-checkbox-label', [
             input(
+              classes: 'input',
               type: InputType.checkbox,
               checked: state.minify,
               onChange: (_) => notifier.toggleMinify(),
             ),
+            span(classes: 'custom-checkbox', []),
             AppText(text: 'Minify'),
           ]),
 
           label(classes: 'tool-checkbox-label', [
             input(
+              classes: 'input',
               type: InputType.checkbox,
               checked: state.sortKeys,
               onChange: (_) => notifier.toggleSortKeys(),
             ),
+            span(classes: 'custom-checkbox', []),
             AppText(text: 'A-Z Sort'), 
           ]),
 

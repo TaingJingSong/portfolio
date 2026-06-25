@@ -11,5 +11,7 @@ export 'package:jaspr/jaspr.dart';
 export 'package:jaspr/dom.dart';
 export 'package:jaspr_router/jaspr_router.dart';
 export 'package:jaspr_riverpod/jaspr_riverpod.dart';
+export 'package:jaspr_content/jaspr_content.dart' hide RouteLoader;
+export 'package:jaspr_content/components/tabs.dart';
 
 export 'dart:convert';
