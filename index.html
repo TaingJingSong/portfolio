@@ -78,6 +78,15 @@
   </style>
 </head>
 <body>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.body.classList.add('light');
+        }
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Star Background -->
   <div class="star-background">

@@ -54,7 +54,16 @@ void main() {
       link(rel: 'stylesheet', href: 'styles/tools/no-page-found-style.css'),
       script(src: 'javascript/splash.js', defer: true),
     ],
-    body: div([
+    body: Component.fragment([
+      script(content: '''
+        (function () {
+          try {
+            if (localStorage.getItem('theme') === 'light') {
+              document.body.classList.add('light');
+            }
+          } catch (e) {}
+        })();
+      '''),
       // Loading Indicator Elements
       div(id: 'loading_indicator', [
         img(classes: 'indicator', src: '/assets/splash_logo.gif', alt: 'Loading'),

@@ -1,21 +1,27 @@
-import 'dart:js_interop';
+import 'package:universal_web/web.dart';
 
-@JS('localStorage.getItem')
-external JSString? _getItem(JSString key);
+String? getStoredTheme() {
+  try {
+    return window.localStorage.getItem('theme');
+  } catch (_) {
+    return null;
+  }
+}
 
-@JS('localStorage.setItem')
-external void _setItem(JSString key, JSString value);
+void storeTheme(String theme) {
+  try {
+    window.localStorage.setItem('theme', theme);
+  } catch (_) {}
+}
 
-@JS('document.body.classList.add')
-external void _classAdd(JSString cls);
+void addBodyClass(String cls) {
+  try {
+    window.document.body?.classList.add(cls);
+  } catch (_) {}
+}
 
-@JS('document.body.classList.remove')
-external void _classRemove(JSString cls);
-
-String? getStoredTheme() => _getItem('theme'.toJS)?.toDart;
-
-void storeTheme(String theme) => _setItem('theme'.toJS, theme.toJS);
-
-void addBodyClass(String cls) => _classAdd(cls.toJS);
-
-void removeBodyClass(String cls) => _classRemove(cls.toJS);
+void removeBodyClass(String cls) {
+  try {
+    window.document.body?.classList.remove(cls);
+  } catch (_) {}
+}

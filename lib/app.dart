@@ -34,7 +34,7 @@ class _AppWidgetState extends State<App> {
       onLanguageChanged: (lang) => setState(() => locale = lang),
       onMenuChanged: (index) => setState(() => selectedMenu = index),
       onThemeChanged: (dark) => setState(() => isDark = dark),
-      child: div([
+      child: Component.fragment([
         div(classes: 'star-background', [
           div(id: 'stars', []),
           div(id: 'stars2', []),
