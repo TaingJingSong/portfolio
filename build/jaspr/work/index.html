@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+      html, body {
+        width: 100%;
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: #282C33;
+      }
+      h1 {
+        margin: unset;
+        font-size: 4rem;
+      }
+    </style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="My personal portfolio."/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <link href="icons/Icon-192.png" rel="apple-touch-icon"/>
+    <link href="favicon.ico" rel="icon" type="image/png"/>
+    <link href="manifest.json" rel="manifest"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="styles/splash_style.css" rel="stylesheet"/>
+    <link href="styles/fancy-style.css" rel="stylesheet"/>
+    <link href="styles/eslam-style.css" rel="stylesheet"/>
+    <link href="styles/star-style.css" rel="stylesheet"/>
+    <link href="styles/tool-style.css" rel="stylesheet"/>
+    <link href="styles/tools/json-formatter-style.css" rel="stylesheet"/>
+    <link href="styles/tools/color-picker-style.css" rel="stylesheet"/>
+    <link href="styles/tools/copy-style.css" rel="stylesheet"/>
+    <link href="styles/tools/base64-style.css" rel="stylesheet"/>
+    <link href="styles/tools/no-page-found-style.css" rel="stylesheet"/>
+    <script src="javascript/splash.js" defer></script>
+    <!--$-->
+    <title>Works - Taing ChingSong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.client.dart.js" defer></script>
+    <style>
+      .tabs .tab-content {
+        display: none;
+      }
+      .tabs .tab-content[active] {
+        display: initial;
+      }
+      .tab-bar {
+        display: flex;
+        border-bottom-style: solid;
+        border-bottom-color: var(--content-hr);
+        border-bottom-width: 1px;
+        align-items: center;
+        column-gap: 1.25rem;
+      }
+      .tab-bar button {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        border-bottom-width: 2px;
+        font-weight: 700;
+      }
+      .tab-bar button:hover {
+        border-bottom-color: var(--content-hr);
+      }
+      .tab-bar button[active] {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+      .main {
+        display: flex;
+        position: relative;
+        z-index: 1;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+              (function () {
+                try {
+                  if (localStorage.getItem('theme') === 'light') {
+                    document.body.classList.add('light');
+                  }
+                } catch (e) {}
+              })();
+            
+    </script>
+    <div id="loading_indicator">
+      <img class="indicator" alt="Loading" src="assets/splash_logo.gif"/>
+      <div class="progress-track"><div id="progress_fill" class="progress-fill"></div></div>
+      <span class="loading-label">Loading...</span>
+    </div>
+    <!--${}-->
+    <!--@app-->
+    <div class="star-background"><div id="stars"></div><div id="stars2"></div><div id="stars3"></div></div>
+    <div id="cursor-glow"></div>
+    <div class="main">
+      <!--@header-->
+      <header class="app-header container">
+        <div class="logo-section"><img class="logo-icon" alt="Logo" src="assets/icon/svg/Profile.svg"/>Taing ChingSong</div>
+        <nav class="nav-menu">
+          <a class="nav-link" href="/"><span><span>#</span>home</span></a>
+          <a class="nav-link.active" href="/work"><span><span>#</span>works</span></a>
+          <a class="nav-link" href="/about"><span><span>#</span>about-me</span></a>
+          <a class="nav-link" href="/contact"><span><span>#</span>contacts</span></a>
+          <a class="nav-link" href="/tool"><span><span>#</span>tool</span></a>
+          <button class="theme-toggle">☀ Light</button>
+          <select class="lang-switcher"><option value="en" selected>EN</option><option value="km">KM</option></select>
+        </nav>
+        <button class="menu-toggle"><img alt="Menu Toggle" width="18" src="assets/icon/svg/Menu.svg"/></button>
+      </header>
+      <!--/@header-->
+      <!--@work_page-->
+      <div class="container gap-60">
+        <section class="glass-wrap">
+          <h1 class="hero-title"><span class="accent">/</span>projects</h1>
+          <p class="hero-subtitle">list-of-my-projects</p>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>completed-projects</h2><div class="section-line"></div></div>
+          <div class="project-grid">
+            <!--@project_card data={"project":{"imagePath":"assets/image/WinFormDictionary.png","title":"Dictionary WinForm (API)","desc":"English Dictionary WinForm using API","links":[{"title":"Github","link":"https://github.com/JingSongJai/dictionary-winform-api","iconPath":"assets/icon/svg/Github.svg","icon":null}],"isCompleted":true}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="Dictionary WinForm (API)" src="assets/image/WinFormDictionary.png"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">Dictionary WinForm (API)</h3>
+                <p class="project-card-desc">English Dictionary WinForm using API</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/dictionary-winform-api" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+            <!--@project_card data={"project":{"imagePath":"assets/image/NoteApp.jpg","title":"Google NoteApp (Clone)","desc":"NoteApp that base on Google Note","links":[{"title":"Github","link":"https://github.com/JingSongJai/note_app_supabase","iconPath":"assets/icon/svg/Github.svg","icon":null}],"isCompleted":true}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="Google NoteApp (Clone)" src="assets/image/NoteApp.jpg"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">Google NoteApp (Clone)</h3>
+                <p class="project-card-desc">NoteApp that base on Google Note</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/note_app_supabase" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+            <!--@project_card data={"project":{"imagePath":"assets/image/Project-1.png","title":"CV Generator","desc":"Generate CV with real time preview.","links":[{"title":"Github","link":"https://github.com/JingSongJai/project-cv-generator","iconPath":"assets/icon/svg/Github.svg","icon":null}],"isCompleted":true}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="CV Generator" src="assets/image/Project-1.png"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">CV Generator</h3>
+                <p class="project-card-desc">Generate CV with real time preview.</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/project-cv-generator" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+            <!--@project_card data={"project":{"imagePath":"assets/image/FlutterDictionary.png","title":"Flutter Dictionary API","desc":"A Simple Flutter English Dictionary API","links":[{"title":"Github","link":"https://github.com/JingSongJai/flutter_dictionary_api","iconPath":"assets/icon/svg/Github.svg","icon":null}],"isCompleted":true}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="Flutter Dictionary API" src="assets/image/FlutterDictionary.png"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">Flutter Dictionary API</h3>
+                <p class="project-card-desc">A Simple Flutter English Dictionary API</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/flutter_dictionary_api" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+            <!--@project_card data={"project":{"imagePath":"assets/image/MusicPlayer.png","title":"Music Player WinForm","desc":"Music Player with rich features.","links":[{"title":"Github","link":"https://github.com/JingSongJai/project_music_player_c-_winform","iconPath":"assets/icon/svg/Github.svg","icon":null}],"isCompleted":true}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="Music Player WinForm" src="assets/image/MusicPlayer.png"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">Music Player WinForm</h3>
+                <p class="project-card-desc">Music Player with rich features.</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/project_music_player_c-_winform" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+          </div>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>on-going</h2><div class="section-line"></div></div>
+          <div class="project-grid">
+            <!--@project_card data={"project":{"imagePath":"assets/image/YoutubeDownloader.png","title":"Youtube Downloader","desc":"Flutter App for downloading video and music from Youtube.","links":[{"title":"Github","link":"https://github.com/JingSongJai/youtube_downloader_flutter","iconPath":"assets/icon/svg/Github.svg","icon":null}],"isCompleted":false}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="Youtube Downloader" src="assets/image/YoutubeDownloader.png"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">Youtube Downloader</h3>
+                <p class="project-card-desc">Flutter App for downloading video and music from Youtube.</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/youtube_downloader_flutter" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+            <!--@project_card data={"project":{"imagePath":"assets/image/ExpenseTracker.png","title":"Expanse Tracker (Chamnay)","desc":"An Application that track your transactions and more.","links":[{"title":"Github","link":"https://github.com/JingSongJai/project_expense_tracker","iconPath":"assets/icon/svg/Github.svg","icon":null},{"title":"Live","link":"https://project-expense-tracker-git-master-taing-chingsongs-projects.vercel.app/","iconPath":null,"icon":"&lt;~&gt;"}],"isCompleted":false}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="Expanse Tracker (Chamnay)" src="assets/image/ExpenseTracker.png"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">Expanse Tracker (Chamnay)</h3>
+                <p class="project-card-desc">An Application that track your transactions and more.</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/project_expense_tracker" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                  <a class="btn-primary" href="https://project-expense-tracker-git-master-taing-chingsongs-projects.vercel.app/" target="_blank"><span style="color: white; font-size: 10px; margin-right: 6px">&lt;~&gt;</span>Live</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+            <!--@project_card data={"project":{"imagePath":"assets/image/FacebookClone.png","title":"Facebook Clone (Flutter + Express.js)","desc":"Clone of Facebook app","links":[{"title":"Github","link":"https://github.com/JingSongJai/facebook_clone-Flutter-Node.js-Express-","iconPath":"assets/icon/svg/Github.svg","icon":null}],"isCompleted":false}}-->
+            <div class="project-card">
+              <img class="project-card-img" alt="Facebook Clone (Flutter + Express.js)" src="assets/image/FacebookClone.png"/>
+              <div class="project-card-info">
+                <h3 class="project-card-title">Facebook Clone (Flutter + Express.js)</h3>
+                <p class="project-card-desc">Clone of Facebook app</p>
+                <div class="project-card-links">
+                  <a class="btn-primary" href="https://github.com/JingSongJai/facebook_clone-Flutter-Node.js-Express-" target="_blank"><img style="margin-right: 6px" alt="Github" width="32" src="assets/icon/svg/Github.svg"/>Github</a>
+                </div>
+              </div>
+            </div>
+            <!--/@project_card-->
+          </div>
+        </section>
+      </div>
+      <!--/@work_page-->
+      <!--@footer-->
+      <footer class="app-footer container">
+        <div class="footer-flex">
+          <div class="footer-left">
+            <div class="footer-email-row"><img alt="Email icon" width="15" src="assets/icon/svg/Profile.svg"/>chingsong15@gmail.com</div>
+            <p class="footer-desc">Front-end and cross-platform developer.</p>
+          </div>
+          <div class="footer-right">
+            <h4 class="footer-right-title">Media</h4>
+            <div class="footer-social-row">
+              <a href="https://github.com/JingSongJai" target="_blank"><img class="footer-social-icon" alt="Github" src="assets/icon/svg/Github.svg"/></a>
+              <a href="https://www.linkedin.com/in/jing-song-a0732334b/" target="_blank"><img class="footer-social-icon" alt="LinkedIn" src="assets/icon/svg/Linkedin.svg"/></a>
+              <a href="https://t.me/jingsongtaing" target="_blank"><img class="footer-social-icon" alt="Telegram" src="assets/icon/svg/Telegram.svg"/></a>
+            </div>
+          </div>
+        </div>
+        <p class="footer-copyright">© Copyright 2026. Made by ChingSong</p>
+      </footer>
+      <!--/@footer-->
+    </div>
+    <!--/@app-->
+  </body>
+</html>

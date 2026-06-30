@@ -1,0 +1,88 @@
+.eslam-card {
+  position: relative;
+  width: 220px;
+  min-height: 320px; /* Changed to min-height to accommodate more skills */
+  background: mediumturquoise;
+  display: flex;
+  flex-direction: column; /* Stacks the title and list vertically */
+  align-items: center;
+  justify-content: flex-start; /* Aligns content to the top */
+  padding: 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden; /* Prevents background animation from spilling out */
+}
+
+/* Elevate the content above the animated pseudo-element backgrounds */
+.eslam-card-title,
+.eslam-card-list {
+  position: relative;
+  z-index: 1; 
+  width: 100%;
+}
+
+.eslam-card-title {
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--color-tertiary, #111);
+  border-bottom: 2px solid var(--color-secondary, rgba(255, 255, 255, 0.5));
+}
+
+.eslam-card-list {
+  display: flex;
+  flex-wrap: wrap; /* Allows skills to wrap to the next line nicely */
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Style the individual skill spans to look like "tags" or "pills" */
+.eslam-card-list span {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-secondary, #fff);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.eslam-card-list span:hover {
+  background-color: white;
+  color: mediumturquoise;
+}
+
+/* Keep your cool background animations, but push them to the back */
+.eslam-card::before,
+.eslam-card::after {
+  position: absolute;
+  content: "";
+  width: 20%;
+  height: 20%;
+  background-color: lightblue;
+  transition: all 0.5s ease-in-out;
+  z-index: 0; /* Keeps the animation behind your text */
+}
+
+.eslam-card::before {
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 100%;
+}
+
+.eslam-card::after {
+  bottom: 0;
+  left: 0;
+  border-radius: 0 100% 0 15px;
+}
+
+.eslam-card:hover::before,
+.eslam-card:hover::after {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}

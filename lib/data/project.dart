@@ -10,7 +10,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/dictionary-winform-api',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -23,7 +23,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/note_app_supabase',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -36,7 +36,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/project-cv-generator',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -49,7 +49,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/flutter_dictionary_api',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -62,7 +62,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/project_music_player_c-_winform',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -74,7 +74,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/youtube_downloader_flutter',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
     ],
   ),
@@ -86,7 +86,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/project_expense_tracker',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
       LinkModel(
         title: 'Live',
@@ -103,7 +103,7 @@ List<ProjectModel> projects = [
       LinkModel(
         title: 'Github',
         link: 'https://github.com/JingSongJai/facebook_clone-Flutter-Node.js-Express-',
-        iconPath: '/assets/icon/svg/Github.svg',
+        iconPath: 'assets/icon/svg/Github.svg',
       ),
     ],
   ),

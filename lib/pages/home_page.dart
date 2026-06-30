@@ -40,12 +40,12 @@ class HomePage extends StatelessComponent {
         div(classes: 'hero-right', [
           div(classes: 'profile-container', [
             img(
-              src: '/assets/icon/svg/Logo.svg',
+              src: 'assets/icon/svg/Logo.svg',
               classes: 'logo-bg',
               alt: 'Logo Background',
             ),
             img(
-              src: '/assets/image/Profile.png',
+              src: 'assets/image/Profile.png',
               classes: 'profile-img',
               alt: 'ChingSong Profile',
             ),
@@ -102,7 +102,7 @@ class HomePage extends StatelessComponent {
             div(classes: 'box-line', []),
             div(classes: 'dot-box', [for (var i = 0; i < 25; i++) span([])]),
             img(
-              src: '/assets/icon/svg/Logo.svg',
+              src: 'assets/icon/svg/Logo.svg',
               classes: 'skill-logo-decor',
               alt: 'Skill Logo Decor',
             ),
@@ -146,7 +146,7 @@ class HomePage extends StatelessComponent {
           div(classes: 'about-image-column', [
             div(classes: 'about-img-container', [
               img(
-                src: '/assets/image/Profile.png',
+                src: 'assets/image/Profile.png',
                 classes: 'about-img',
                 alt: 'About ChingSong',
               ),
@@ -175,12 +175,12 @@ class HomePage extends StatelessComponent {
             div(classes: 'contact-box', [
               h4(classes: 'contact-box-title', [Component.text('Message me here'.tr(context))]),
               a(href: 'mailto:chingsong15@gmail.com', classes: 'contact-item', [
-                img(src: '/assets/icon/svg/Email.svg', classes: 'contact-item-icon', alt: 'Email'),
+                img(src: 'assets/icon/svg/Email.svg', classes: 'contact-item-icon', alt: 'Email'),
                 span(classes: 'contact-item-text', [Component.text('chingsong15@gmail.com')]),
               ]),
               a(href: 'https://t.me/jingsongtaing', target: Target.blank, classes: 'contact-item', [
                 img(
-                  src: '/assets/icon/svg/Telegram.svg',
+                  src: 'assets/icon/svg/Telegram.svg',
                   classes: 'contact-item-icon',
                   alt: 'Telegram',
                 ),

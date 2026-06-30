@@ -53,7 +53,7 @@ class AboutPage extends StatelessComponent {
           div(classes: 'about-image-column', [
             div(classes: 'about-img-container', [
               img(
-                src: '/assets/image/Profile.png',
+                src: 'assets/image/Profile.png',
                 classes: 'about-img',
                 alt: 'ChingSong Profile',
               ),

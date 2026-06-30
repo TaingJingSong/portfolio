@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+      html, body {
+        width: 100%;
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: #282C33;
+      }
+      h1 {
+        margin: unset;
+        font-size: 4rem;
+      }
+    </style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="My personal portfolio."/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <link href="icons/Icon-192.png" rel="apple-touch-icon"/>
+    <link href="favicon.ico" rel="icon" type="image/png"/>
+    <link href="manifest.json" rel="manifest"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="styles/splash_style.css" rel="stylesheet"/>
+    <link href="styles/fancy-style.css" rel="stylesheet"/>
+    <link href="styles/eslam-style.css" rel="stylesheet"/>
+    <link href="styles/star-style.css" rel="stylesheet"/>
+    <link href="styles/tool-style.css" rel="stylesheet"/>
+    <link href="styles/tools/json-formatter-style.css" rel="stylesheet"/>
+    <link href="styles/tools/color-picker-style.css" rel="stylesheet"/>
+    <link href="styles/tools/copy-style.css" rel="stylesheet"/>
+    <link href="styles/tools/base64-style.css" rel="stylesheet"/>
+    <link href="styles/tools/no-page-found-style.css" rel="stylesheet"/>
+    <script src="javascript/splash.js" defer></script>
+    <!--$-->
+    <title>Tools - Taing ChingSong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.client.dart.js" defer></script>
+    <style>
+      .tabs .tab-content {
+        display: none;
+      }
+      .tabs .tab-content[active] {
+        display: initial;
+      }
+      .tab-bar {
+        display: flex;
+        border-bottom-style: solid;
+        border-bottom-color: var(--content-hr);
+        border-bottom-width: 1px;
+        align-items: center;
+        column-gap: 1.25rem;
+      }
+      .tab-bar button {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        border-bottom-width: 2px;
+        font-weight: 700;
+      }
+      .tab-bar button:hover {
+        border-bottom-color: var(--content-hr);
+      }
+      .tab-bar button[active] {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+      .main {
+        display: flex;
+        position: relative;
+        z-index: 1;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+              (function () {
+                try {
+                  if (localStorage.getItem('theme') === 'light') {
+                    document.body.classList.add('light');
+                  }
+                } catch (e) {}
+              })();
+            
+    </script>
+    <div id="loading_indicator">
+      <img class="indicator" alt="Loading" src="assets/splash_logo.gif"/>
+      <div class="progress-track"><div id="progress_fill" class="progress-fill"></div></div>
+      <span class="loading-label">Loading...</span>
+    </div>
+    <!--${}-->
+    <!--@app-->
+    <div class="star-background"><div id="stars"></div><div id="stars2"></div><div id="stars3"></div></div>
+    <div id="cursor-glow"></div>
+    <div class="main">
+      <!--@header-->
+      <header class="app-header container">
+        <div class="logo-section"><img class="logo-icon" alt="Logo" src="assets/icon/svg/Profile.svg"/>Taing ChingSong</div>
+        <nav class="nav-menu">
+          <a class="nav-link" href="/"><span><span>#</span>home</span></a>
+          <a class="nav-link" href="/work"><span><span>#</span>works</span></a>
+          <a class="nav-link" href="/about"><span><span>#</span>about-me</span></a>
+          <a class="nav-link" href="/contact"><span><span>#</span>contacts</span></a>
+          <a class="nav-link.active" href="/tool"><span><span>#</span>tool</span></a>
+          <button class="theme-toggle">☀ Light</button>
+          <select class="lang-switcher"><option value="en" selected>EN</option><option value="km">KM</option></select>
+        </nav>
+        <button class="menu-toggle"><img alt="Menu Toggle" width="18" src="assets/icon/svg/Menu.svg"/></button>
+      </header>
+      <!--/@header-->
+      <!--@tool_page-->
+      <div class="container gap-60">
+        <section class="glass-wrap">
+          <h1 class="hero-title"><span class="accent">/</span>tools</h1>
+          <p class="hero-subtitle">a-collection-of-dev-tools-built-for-everyday-use.</p>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>dev</h2><div class="section-line"></div></div>
+          <div class="tools-grid">
+            <a href="/tool/json-formatter">
+              <div class="tool-card">
+                <div class="tool-card-icon">{ }</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">JSON Formatter</h3>
+                  <p class="tool-card-desc">Format, validate and minify JSON</p>
+                </div>
+              </div>
+            </a>
+            <a href="/tool/color-picker">
+              <div class="tool-card">
+                <div class="tool-card-icon">🎨</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">Color Picker</h3>
+                  <p class="tool-card-desc">Pick colors and convert HEX/RGB/HSL</p>
+                </div>
+              </div>
+            </a>
+            <a href="/tool/base64">
+              <div class="tool-card">
+                <div class="tool-card-icon">⇄</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">Base64</h3>
+                  <p class="tool-card-desc">Encode and decode Base64 strings</p>
+                </div>
+              </div>
+            </a>
+            <a href="/tool/regex-tester">
+              <div class="tool-card">
+                <div class="tool-card-icon">.*</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">Regex Tester</h3>
+                  <p class="tool-card-desc">Test and debug regular expressions</p>
+                </div>
+              </div>
+            </a>
+            <a href="/tool/uuid">
+              <div class="tool-card">
+                <div class="tool-card-icon">#</div>
+                <div class="tool-card-info"><h3 class="tool-card-title">UUID Generator</h3><p class="tool-card-desc">Generate random UUIDs</p></div>
+              </div>
+            </a>
+          </div>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>flutter</h2><div class="section-line"></div></div>
+          <div class="tools-grid">
+            <a href="/tool/json-to-dart">
+              <div class="tool-card">
+                <div class="tool-card-icon">🎯</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">JSON → Dart</h3>
+                  <p class="tool-card-desc">Generate Dart model classes from JSON</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>converter</h2><div class="section-line"></div></div>
+          <div class="tools-grid">
+            <a href="/tool/unit-converter">
+              <div class="tool-card">
+                <div class="tool-card-icon">⟷</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">Unit Converter</h3>
+                  <p class="tool-card-desc">Convert between common units</p>
+                </div>
+              </div>
+            </a>
+            <a href="/tool/timestamp">
+              <div class="tool-card">
+                <div class="tool-card-icon">🕐</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">Timestamp</h3>
+                  <p class="tool-card-desc">Convert Unix timestamps to dates</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>ai</h2><div class="section-line"></div></div>
+          <div class="tools-grid">
+            <a href="/tool/ai-code-reviewer">
+              <div class="tool-card">
+                <div class="tool-card-icon">🤖</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">AI Code Reviewer</h3>
+                  <p class="tool-card-desc">Review Flutter/Dart code with AI</p>
+                </div>
+              </div>
+            </a>
+            <a href="/tool/ai-commit">
+              <div class="tool-card">
+                <div class="tool-card-icon">✨</div>
+                <div class="tool-card-info">
+                  <h3 class="tool-card-title">AI Commit Message</h3>
+                  <p class="tool-card-desc">Generate git commit messages with AI</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+      </div>
+      <!--/@tool_page-->
+      <!--@footer-->
+      <footer class="app-footer container">
+        <div class="footer-flex">
+          <div class="footer-left">
+            <div class="footer-email-row"><img alt="Email icon" width="15" src="assets/icon/svg/Profile.svg"/>chingsong15@gmail.com</div>
+            <p class="footer-desc">Front-end and cross-platform developer.</p>
+          </div>
+          <div class="footer-right">
+            <h4 class="footer-right-title">Media</h4>
+            <div class="footer-social-row">
+              <a href="https://github.com/JingSongJai" target="_blank"><img class="footer-social-icon" alt="Github" src="assets/icon/svg/Github.svg"/></a>
+              <a href="https://www.linkedin.com/in/jing-song-a0732334b/" target="_blank"><img class="footer-social-icon" alt="LinkedIn" src="assets/icon/svg/Linkedin.svg"/></a>
+              <a href="https://t.me/jingsongtaing" target="_blank"><img class="footer-social-icon" alt="Telegram" src="assets/icon/svg/Telegram.svg"/></a>
+            </div>
+          </div>
+        </div>
+        <p class="footer-copyright">© Copyright 2026. Made by ChingSong</p>
+      </footer>
+      <!--/@footer-->
+    </div>
+    <!--/@app-->
+  </body>
+</html>

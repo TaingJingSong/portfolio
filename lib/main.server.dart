@@ -66,7 +66,7 @@ void main() {
       '''),
       // Loading Indicator Elements
       div(id: 'loading_indicator', [
-        img(classes: 'indicator', src: '/assets/splash_logo.gif', alt: 'Loading'),
+        img(classes: 'indicator', src: 'assets/splash_logo.gif', alt: 'Loading'),
         div(classes: 'progress-track', [
           div(id: 'progress_fill', classes: 'progress-fill', [])
         ]),

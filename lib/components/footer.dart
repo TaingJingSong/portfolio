@@ -14,7 +14,7 @@ class Footer extends StatelessComponent {
       div(classes: 'footer-flex', [
         div(classes: 'footer-left', [
           div(classes: 'footer-email-row', [
-            img(src: '/assets/icon/svg/Profile.svg', width: 15, alt: 'Email icon'),
+            img(src: 'assets/icon/svg/Profile.svg', width: 15, alt: 'Email icon'),
             Component.text('chingsong15@gmail.com'),
           ]),
           p(classes: 'footer-desc', [
@@ -25,13 +25,13 @@ class Footer extends StatelessComponent {
           h4(classes: 'footer-right-title', [Component.text('Media'.tr(context))]),
           div(classes: 'footer-social-row', [
             a(href: 'https://github.com/JingSongJai', target: Target.blank, [
-              img(src: '/assets/icon/svg/Github.svg', classes: 'footer-social-icon', alt: 'Github')
+              img(src: 'assets/icon/svg/Github.svg', classes: 'footer-social-icon', alt: 'Github')
             ]),
             a(href: 'https://www.linkedin.com/in/jing-song-a0732334b/', target: Target.blank, [
-              img(src: '/assets/icon/svg/Linkedin.svg', classes: 'footer-social-icon', alt: 'LinkedIn')
+              img(src: 'assets/icon/svg/Linkedin.svg', classes: 'footer-social-icon', alt: 'LinkedIn')
             ]),
             a(href: 'https://t.me/jingsongtaing', target: Target.blank, [
-              img(src: '/assets/icon/svg/Telegram.svg', classes: 'footer-social-icon', alt: 'Telegram')
+              img(src: 'assets/icon/svg/Telegram.svg', classes: 'footer-social-icon', alt: 'Telegram')
             ]),
           ]),
         ]),

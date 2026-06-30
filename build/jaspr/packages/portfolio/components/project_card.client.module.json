@@ -1,0 +1,1 @@
+{"name":"ProjectCard","id":["portfolio","lib/components/project_card.dart"],"import":"package:portfolio/components/project_card.dart","params":[{"name":"project","isNamed":true,"decoder":"[[package:portfolio/model/project_model.dart]].ProjectModel.decode(p['project'] as Map<String, dynamic>)","encoder":"c.project.encode()"}]}

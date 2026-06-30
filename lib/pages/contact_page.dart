@@ -41,12 +41,12 @@ class ContactPage extends StatelessComponent {
             div(classes: 'contact-box', [
               h4(classes: 'contact-box-title', [Component.text('Message me here'.tr(context))]),
               a(href: 'mailto:chingsong15@gmail.com', classes: 'contact-item', [
-                img(src: '/assets/icon/svg/Email.svg', classes: 'contact-item-icon', alt: 'Email'),
+                img(src: 'assets/icon/svg/Email.svg', classes: 'contact-item-icon', alt: 'Email'),
                 span(classes: 'contact-item-text', [Component.text('chingsong15@gmail.com')]),
               ]),
               a(href: 'https://t.me/jingsongtaing', target: Target.blank, classes: 'contact-item', [
                 img(
-                  src: '/assets/icon/svg/Telegram.svg',
+                  src: 'assets/icon/svg/Telegram.svg',
                   classes: 'contact-item-icon',
                   alt: 'Telegram',
                 ),

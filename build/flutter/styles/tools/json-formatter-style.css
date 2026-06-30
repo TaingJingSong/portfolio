@@ -1,0 +1,171 @@
+/* Tool pages shared styles */
+.tool-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.tool-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-secondary);
+  cursor: pointer;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-secondary);
+  background: transparent;
+  color: var(--color-secondary);
+  padding: 10px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  color: var(--color-tertiary);
+  border-color: var(--color-tertiary);
+}
+
+.tool-editor-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .tool-editor-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tool-editor-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tool-editor-label {
+  font-size: 12px;
+  color: var(--color-secondary);
+}
+
+.tool-textarea {
+  width: 100%;
+  min-height: 400px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-card-border);
+  border-radius: 8px;
+  padding: 16px;
+  color: var(--color-tertiary);
+  font-family: 'EnglishFont', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.tool-textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.tool-textarea-error {
+  border-color: #e06c75;
+}
+
+.tool-error {
+  font-size: 12px;
+  color: #e06c75;
+  line-height: 1.5;
+}
+
+.tool-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tool-stats {
+  font-size: 11px;
+  color: var(--color-secondary);
+  opacity: 0.7;
+}
+
+.tool-select {
+  background: transparent;
+  border: 1px solid var(--color-secondary);
+  color: var(--color-secondary);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.tool-select:focus,
+.tool-select:hover {
+  border-color: var(--color-tertiary);
+  color: var(--color-tertiary);
+}
+
+.tool-select option {
+  background: var(--color-bg); /* Match your site's background */
+  color: var(--color-tertiary);
+}
+
+/* Slightly darken the readonly background to distinguish it from the input */
+.tool-textarea-readonly {
+  background: rgba(0, 0, 0, 0.2); 
+  cursor: default;
+}
+
+/* Style disabled state for the download button */
+.tool-btn-download:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+/* Utility to ensure absolute positioned items (like AppCopy) stay inside the textarea boundaries */
+.tool-relative {
+  position: relative;
+}
+
+/* Container for the output header actions (stats + copy + download) */
+.tool-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Small, subtle inline buttons for headers */
+.tool-btn-icon {
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  font-size: 11px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: opacity 0.2s;
+}
+
+.tool-btn-icon:hover {
+  opacity: 0.8;
+}
+
+.tool-btn-icon:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}

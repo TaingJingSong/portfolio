@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Roboto);
+      html, body {
+        width: 100%;
+        min-height: 100vh;
+        padding: 0;
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: #282C33;
+      }
+      h1 {
+        margin: unset;
+        font-size: 4rem;
+      }
+    </style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="My personal portfolio."/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <link href="icons/Icon-192.png" rel="apple-touch-icon"/>
+    <link href="favicon.ico" rel="icon" type="image/png"/>
+    <link href="manifest.json" rel="manifest"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="styles/splash_style.css" rel="stylesheet"/>
+    <link href="styles/fancy-style.css" rel="stylesheet"/>
+    <link href="styles/eslam-style.css" rel="stylesheet"/>
+    <link href="styles/star-style.css" rel="stylesheet"/>
+    <link href="styles/tool-style.css" rel="stylesheet"/>
+    <link href="styles/tools/json-formatter-style.css" rel="stylesheet"/>
+    <link href="styles/tools/color-picker-style.css" rel="stylesheet"/>
+    <link href="styles/tools/copy-style.css" rel="stylesheet"/>
+    <link href="styles/tools/base64-style.css" rel="stylesheet"/>
+    <link href="styles/tools/no-page-found-style.css" rel="stylesheet"/>
+    <script src="javascript/splash.js" defer></script>
+    <!--$-->
+    <title>About - Taing ChingSong</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.client.dart.js" defer></script>
+    <style>
+      .tabs .tab-content {
+        display: none;
+      }
+      .tabs .tab-content[active] {
+        display: initial;
+      }
+      .tab-bar {
+        display: flex;
+        border-bottom-style: solid;
+        border-bottom-color: var(--content-hr);
+        border-bottom-width: 1px;
+        align-items: center;
+        column-gap: 1.25rem;
+      }
+      .tab-bar button {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom-style: solid;
+        border-bottom-color: transparent;
+        border-bottom-width: 2px;
+        font-weight: 700;
+      }
+      .tab-bar button:hover {
+        border-bottom-color: var(--content-hr);
+      }
+      .tab-bar button[active] {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+      .main {
+        display: flex;
+        position: relative;
+        z-index: 1;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+              (function () {
+                try {
+                  if (localStorage.getItem('theme') === 'light') {
+                    document.body.classList.add('light');
+                  }
+                } catch (e) {}
+              })();
+            
+    </script>
+    <div id="loading_indicator">
+      <img class="indicator" alt="Loading" src="assets/splash_logo.gif"/>
+      <div class="progress-track"><div id="progress_fill" class="progress-fill"></div></div>
+      <span class="loading-label">Loading...</span>
+    </div>
+    <!--${}-->
+    <!--@app-->
+    <div class="star-background"><div id="stars"></div><div id="stars2"></div><div id="stars3"></div></div>
+    <div id="cursor-glow"></div>
+    <div class="main">
+      <!--@header-->
+      <header class="app-header container">
+        <div class="logo-section"><img class="logo-icon" alt="Logo" src="assets/icon/svg/Profile.svg"/>Taing ChingSong</div>
+        <nav class="nav-menu">
+          <a class="nav-link" href="/"><span><span>#</span>home</span></a>
+          <a class="nav-link" href="/work"><span><span>#</span>works</span></a>
+          <a class="nav-link.active" href="/about"><span><span>#</span>about-me</span></a>
+          <a class="nav-link" href="/contact"><span><span>#</span>contacts</span></a>
+          <a class="nav-link" href="/tool"><span><span>#</span>tool</span></a>
+          <button class="theme-toggle">☀ Light</button>
+          <select class="lang-switcher"><option value="en" selected>EN</option><option value="km">KM</option></select>
+        </nav>
+        <button class="menu-toggle"><img alt="Menu Toggle" width="18" src="assets/icon/svg/Menu.svg"/></button>
+      </header>
+      <!--/@header-->
+      <!--@about_page-->
+      <div class="container gap-60">
+        <section class="glass-wrap">
+          <h1 class="hero-title"><span class="accent">/</span>about-me</h1>
+          <p class="hero-subtitle">who-am-i</p>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>about-me</h2><div class="section-line"></div></div>
+          <div class="glass-wrap about-flex">
+            <div class="about-text-column">
+              <h3 class="hero-title">Hello, I'm ChingSong</h3>
+              <p class="about-text">
+                I'm a Flutter mobile developer with a strong passion for building modern, user-friendly apps. I have experience creating real-world projects using Flutter, Dart, GetX, and Figma, and I enjoy turning ideas into clean, functional mobile applications.
+              </p>
+              <p class="about-text">
+                My focus is on writing maintainable, scalable code and delivering responsive apps that provide smooth user experiences across both Android and iOS platforms. Whether it's building from scratch or improving existing apps, I thrive in transforming complex problems into intuitive interfaces.
+              </p>
+            </div>
+            <div class="about-image-column">
+              <div class="about-img-container"><img class="about-img" alt="ChingSong Profile" src="assets/image/Profile.png"/></div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>skills</h2><div class="section-line"></div></div>
+          <div class="skills-right">
+            <article class="skill-card">
+              <h3 class="skill-card-title">Language</h3>
+              <div class="skill-card-list">
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 80%"><span class="skill-name">C#</span><span class="skill-level-text">80%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Backend APIs, desktop apps, and system integrations.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 80%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 95%"><span class="skill-name">Flutter/Dart</span><span class="skill-level-text">95%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Highly responsive cross-platform mobile and web applications.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 95%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 85%"><span class="skill-name">Python</span><span class="skill-level-text">85%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Data processing, automation scripts, and backend servers.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 85%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 80%"><span class="skill-name">FastAPI</span><span class="skill-level-text">80%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">High-performance RESTful APIs and microservices.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 80%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 70%"><span class="skill-name">React Native</span><span class="skill-level-text">70%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Cross-platform mobile development with React Native.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 70%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="skill-card">
+              <h3 class="skill-card-title">Database</h3>
+              <div class="skill-card-list">
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 85%"><span class="skill-name">MySQL</span><span class="skill-level-text">85%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Relational database design, query optimization, and indexing.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 85%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 80%"><span class="skill-name">SQL Server</span><span class="skill-level-text">80%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Enterprise database management, stored procedures, and triggers.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 80%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 75%"><span class="skill-name">MongoDB</span><span class="skill-level-text">75%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">NoSQL document storage, schemas, and aggregation pipelines.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 75%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 85%"><span class="skill-name">PostgreSQL</span><span class="skill-level-text">85%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Advanced queries, JSONB storage, and reliable server hosting.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 85%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="skill-card">
+              <h3 class="skill-card-title">Tool</h3>
+              <div class="skill-card-list">
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 90%"><span class="skill-name">GitHub</span><span class="skill-level-text">90%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Version control, collaborative pull requests, and CI/CD pipelines.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 90%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 85%"><span class="skill-name">GitLab</span><span class="skill-level-text">85%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Git repositories, runner orchestration, and branch policies.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 85%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="skill-card">
+              <h3 class="skill-card-title">State Management</h3>
+              <div class="skill-card-list">
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 90%"><span class="skill-name">GetX</span><span class="skill-level-text">90%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Reactive state management, dependency injection, and simple routing.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 90%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 85%"><span class="skill-name">Riverpod</span><span class="skill-level-text">85%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Compile-safe, decoupled state management and provider caching.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 85%"></div></div>
+                  </div>
+                </div>
+                <div class="skill-badge-wrapper">
+                  <span class="skill-badge" style="--skill-level: 95%"><span class="skill-name">Provider</span><span class="skill-level-text">95%</span></span>
+                  <div class="skill-tooltip">
+                    <p class="skill-tooltip-desc">Inherent Flutter state management and scoped widget rebuilding.</p>
+                    <div class="skill-progress-bar"><div class="skill-progress-fill" style="width: 95%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section>
+          <div class="section-header"><h2 class="section-title"><span>#</span>my-fun-facts</h2><div class="section-line"></div></div>
+          <div class="fun-facts-wrap">
+            <div class="fun-fact-box">Sometimes, my best ideas come while showering, not coding.</div>
+            <div class="fun-fact-box">I listen to random music while coding — it’s a vibe.</div>
+            <div class="fun-fact-box">My app crashes only when someone is watching me demo it.</div>
+          </div>
+        </section>
+      </div>
+      <!--/@about_page-->
+      <!--@footer-->
+      <footer class="app-footer container">
+        <div class="footer-flex">
+          <div class="footer-left">
+            <div class="footer-email-row"><img alt="Email icon" width="15" src="assets/icon/svg/Profile.svg"/>chingsong15@gmail.com</div>
+            <p class="footer-desc">Front-end and cross-platform developer.</p>
+          </div>
+          <div class="footer-right">
+            <h4 class="footer-right-title">Media</h4>
+            <div class="footer-social-row">
+              <a href="https://github.com/JingSongJai" target="_blank"><img class="footer-social-icon" alt="Github" src="assets/icon/svg/Github.svg"/></a>
+              <a href="https://www.linkedin.com/in/jing-song-a0732334b/" target="_blank"><img class="footer-social-icon" alt="LinkedIn" src="assets/icon/svg/Linkedin.svg"/></a>
+              <a href="https://t.me/jingsongtaing" target="_blank"><img class="footer-social-icon" alt="Telegram" src="assets/icon/svg/Telegram.svg"/></a>
+            </div>
+          </div>
+        </div>
+        <p class="footer-copyright">© Copyright 2026. Made by ChingSong</p>
+      </footer>
+      <!--/@footer-->
+    </div>
+    <!--/@app-->
+  </body>
+</html>

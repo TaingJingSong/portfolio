@@ -1,0 +1,1 @@
+[{"name":"ProjectModel","decoder":"decode","encoder":"encode","rawType":"Map<String, dynamic>","import":"package:portfolio/model/project_model.dart"},{"name":"LinkModel","decoder":"decode","encoder":"encode","rawType":"Map<String, dynamic>","import":"package:portfolio/model/project_model.dart"}]

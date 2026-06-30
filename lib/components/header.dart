@@ -66,7 +66,7 @@ class _HeaderState extends State<Header> {
 
     return header(classes: 'app-header container', [
       div(classes: 'logo-section', [
-        img(src: '/assets/icon/svg/Profile.svg', classes: 'logo-icon', alt: 'Logo'),
+        img(src: 'assets/icon/svg/Profile.svg', classes: 'logo-icon', alt: 'Logo'),
         Component.text('Taing ChingSong'.tr(context)),
       ]),
 
@@ -106,7 +106,7 @@ class _HeaderState extends State<Header> {
         onClick: () => toggleMenu(),
         [
           img(
-            src: isMenuOpen ? '/assets/icon/svg/Cancel.svg' : '/assets/icon/svg/Menu.svg',
+            src: isMenuOpen ? 'assets/icon/svg/Cancel.svg' : 'assets/icon/svg/Menu.svg',
             width: 18,
             alt: 'Menu Toggle',
           ),

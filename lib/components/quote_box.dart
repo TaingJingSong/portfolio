@@ -15,12 +15,12 @@ class QuoteBox extends StatelessComponent {
           Component.text('Coding is 10% writing code and 90% figuring out why it doesn’t work.'.tr(context)),
         ]),
         img(
-          src: '/assets/icon/svg/Quote.svg',
+          src: 'assets/icon/svg/Quote.svg',
           classes: 'quote-svg quote-svg-left',
           alt: 'Quote Start',
         ),
         img(
-          src: '/assets/icon/svg/Quote.svg',
+          src: 'assets/icon/svg/Quote.svg',
           classes: 'quote-svg quote-svg-right',
           alt: 'Quote End',
         ),
