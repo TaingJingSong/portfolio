@@ -10,6 +10,7 @@ void main() {
   );
 
   runApp(Document(
+    base: 'portfolio',
     title: 'Taing ChingSong',
     styles: [
       css.import('https://fonts.googleapis.com/css?family=Roboto'),
